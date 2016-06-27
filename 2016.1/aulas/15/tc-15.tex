@@ -1,0 +1,329 @@
+\documentclass[xcolor=dvipsnames,table]{beamer}
+
+\usepackage{latexsym}
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{stmaryrd}
+\usepackage{fancybox}
+\usepackage{datetime}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{graphics}
+\usepackage{url}
+\usepackage{algorithmic}
+\usepackage{algorithm}
+\usepackage{acronym}
+\usepackage{array}
+\usepackage[normalem]{ulem}
+
+\newtheorem{definicao}{Definio}
+\newcommand{\tab}{\hspace*{2em}}
+
+\mode<presentation>
+{
+  \definecolor{colortexto}{RGB}{0,0,0}
+ 
+  \setbeamertemplate{background canvas}[vertical shading][ bottom=white!10,top=white!10]
+  \setbeamercolor{normal text}{fg=colortexto} 
+
+  \usetheme{Warsaw}
+}
+
+\title{Complexidade de Tempo} 
+
+\author{
+  Esdras Lins Bispo Jr. \\ \url{bispojr@ufg.br}
+  } 
+ \institute{
+  Teoria da Computação \\Bacharelado em Ciência da Computação}
+\date{\textbf{27 de junho de 2016} }
+
+\logo{\includegraphics[width=1cm]{images/ufgJataiLogo.png}}
+
+\begin{document}
+
+	\begin{frame}
+		\titlepage
+	\end{frame}
+
+	\AtBeginSection{
+		\begin{frame}{Sumário}%[allowframebreaks]{Sumário}
+    		\tableofcontents[currentsection]
+    		%\tableofcontents[currentsection, hideothersubsections]
+		\end{frame}
+	}
+
+	\begin{frame}{Plano de Aula}
+		\tableofcontents
+		%\tableofcontents[hideallsubsections]
+	\end{frame}
+    
+    \section{Pensamento}
+	\begin{frame}{Pensamento}
+  		\begin{center}
+    		\includegraphics[width=7cm]{images/pensamento.png}
+  		\end{center}
+	\end{frame}
+	
+	\begin{frame}{Pensamento}
+		\begin{columns}
+			\column{.4\textwidth}  		
+		  		\begin{center}
+		    		\includegraphics[height=.5\textheight]{images/mencken.jpg}
+		  		\end{center}
+			\column{.6\textwidth}  		
+				\begin{block}{Frase}
+					\begin{center}
+						{\large Para todo problema complexo existe sempre uma solução simples, elegante e completamente errada.}
+					\end{center}
+				\end{block}		  		
+		  		\begin{block}{Quem?}
+		  			\begin{center}
+						{\bf Henry Mencken (1880-1956)} \\ Jornalista e crítico social americano.
+					\end{center}
+				\end{block}
+		\end{columns}
+	\end{frame}
+	
+%------------------------------------------
+
+\section{Revisão}
+	
+	\subsection{O Método da Diagonalização}
+	\begin{frame}{Conjuntos Incontáveis}
+		\begin{block}{Teorema 4.17}
+			$\mathbb{R}$ é incontável.
+		\end{block}
+		\begin{block}{Ideia da Prova}
+			\begin{itemize}
+				\item De forma a mostrar que $\mathbb{R}$ é incontável, mostramos que nenhuma correspondência existe entre $\mathbb{N}$ e $\mathbb{R}$.
+				\begin{itemize}
+					\item Supomos, a princípio, que a correspondência $f$ existe.
+					\item Logo após, apresentamos um valor $x \in \mathbb{R}$ que não está emparelhado com valor algum em $\mathbb{N}$ \\(o que indica um absurdo).				
+				\end{itemize}
+			\end{itemize}
+		\end{block}
+	\end{frame}
+	
+	\begin{frame}{Conjuntos Incontáveis}
+		\begin{center}
+    		\includegraphics[width=6cm]{images/fHip.png}
+    		
+    		{\bf Figura:} Suposta correspondência $f$ entre $\mathbb{N}$ e $\mathbb{R}$.
+  		\end{center}
+	\end{frame}
+	
+	\begin{frame}{Conjuntos Incontáveis}
+		\begin{center}
+    		\includegraphics[width=9cm]{images/fHipX.png}
+    		
+    		{\bf Figura:} Construção de $x$ a partir da correspondência $f$.
+  		\end{center}
+	\end{frame}
+	
+	\begin{frame}{Conjuntos Incontáveis}
+		\begin{block}{Considerações}
+			Apenas deve-se ter o cuidado de escolher dígitos para $x$ \\diferentes de 0 e 9, devido ao fato de 
+			\begin{center}
+				$3,999 \ldots = 4,000 \ldots$
+			\end{center}
+		\end{block}
+	\end{frame}
+	
+	\begin{frame}{Conjuntos Incontáveis}
+		\begin{exampleblock}{Corolário do Teorema 4.17}
+			Algumas linguagens não são Turing-reconhecíveis.
+		\end{exampleblock} 
+		\begin{block}{Ideia da Prova}
+			\begin{enumerate}
+				\item Observar que o conjunto de todas as máquinas de Turing é contável;
+				\item Observar que o conjunto de todas as linguagens é incontável.
+				\item Como há mais linguagens do que máquinas de Turing, então algumas linguagens não podem ser Turing-reconhecíveis.
+			\end{enumerate}
+		\end{block}
+	\end{frame}
+	
+	\begin{frame}{Conjuntos Incontáveis}
+		\begin{block}{O conjunto de todas as máquinas de Turing é contável}
+			\begin{itemize}
+				\item $\Sigma^*$ é contável;
+				\item Cada máquina de Turing pode ser codificada em uma cadeia $\langle M \rangle$;
+				\item O conjunto $C$ de todas as máquinas de Turing pode ser representado por um conjunto de cadeias $\langle M \rangle$;
+				\item É possível enumerar $C$;
+				\item Logo $C$ é contável.
+			\end{itemize}
+		\end{block}
+	\end{frame}
+	
+	\begin{frame}{Conjuntos Incontáveis}
+		\begin{block}{O conjunto de todas as linguagens é incontável}
+			\begin{itemize}
+				\item O conjunto $B$ de todas as sequências binárias infinitas é incontável;
+				\item Qualquer linguagem pode ser descrita como uma sequência característica;
+				\item O conjunto $L$ de todas as linguagens podem ser representado por um conjunto de sequências característica;
+				\item A função $f : L \rightarrow B$ \\(em que $f(A)$ é igual à sequência característica de $A$) \\é uma correspondência;
+				\item Logo, como $B$ é incontável, $L$ é incontável.
+			\end{itemize}
+		\end{block}
+	\end{frame}
+	
+	\begin{frame}{Conjuntos Incontáveis}
+		\begin{center}
+    		\includegraphics[width=11cm]{images/seqCar.png}
+    		
+    		{\bf Figura:} Construção de $\mathcal{X}A$ a partir da correspondência $\Sigma^*$.
+  		\end{center}
+	\end{frame}
+	
+	\begin{frame}{Conjuntos Incontáveis}
+		\begin{block}{Exercício}
+			Mostrar que o problema da parada é indecidível.
+		\end{block}
+	\end{frame}
+	
+	\section{Complexidade de Tempo}	
+	\begin{frame}{Complexidade}
+		\begin{block}{Por que estudar complexidade?}
+			Um problema pode ser até decidível, mas pode levar uma quantidade de tempo ou memória bastante elevada.
+		\end{block} \pause
+		\begin{block}{Questões do estudo de complexidade}
+			\begin{itemize}
+				\item Quanto tempo[espaço] leva[ocupa] um determinado algoritmo?
+				\item O que faz um algoritmo gastar[ocupar] mais tempo[espaço] do que um outro?
+				\item É possível classificar os algoritmos em termos de complexidade?
+			\end{itemize}
+		\end{block}
+	\end{frame}
+	
+	\begin{frame}[shrink]{Complexidade de Tempo}
+		\begin{block}{Problema}
+			Seja a linguagem $A = \{ 0^k 1^k$ | $k \geq 0 \}$. Quanto tempo uma máquina de Turing simples precisa para decidir $A$?
+		\end{block} \pause
+		\begin{block}{Descrição de uma possível MT simples}
+			$M_1$ = ``Sobre a cadeia de entrada $\omega$:
+			\begin{enumerate}
+				\item Faça uma varredura na fita e {\it rejeite} se um 0 for encontrado à direita de um 1.
+				\item Repita se ambos 0s e 1s permanecem sobre a fita:
+				\begin{enumerate}
+					\item Faça uma varredura na fita, cortando um único 0 e um único 1.
+				\end{enumerate}
+				\item Se 0s ainda permanecerem após todos os 1s tiverem sido cortados, ou se 1s ainda permanecerem após todos os 0s tiverem sido cortados, {\it rejeite}. Caso contrário, se nem 0s nem 1s permanecerem sobre a fita, {\it aceite}.
+			\end{enumerate}
+		\end{block}
+	\end{frame}
+	
+	\begin{frame}{Complexidade de Tempo}
+		\begin{block}{Analisando a entrada}
+			\begin{itemize}
+				\item Grafo: número de nós, número de arestas;
+				\item Estrutura de dados: tamanho do vetor, altura da árvore;
+				\item Cadeia: tamanho da cadeia de entrada.
+			\end{itemize}
+		\end{block} \pause
+		\begin{block}{Tipos de Análise}
+			\begin{itemize}
+				\item Análise do pior caso;
+				\item Análise do caso médio;
+				\item Análise do melhor caso.
+			\end{itemize}
+		\end{block} \pause
+		\begin{block}{Utilizaremos aqui...}
+			O tamanho da cadeia de entrada e a análise de pior caso.
+		\end{block}
+	\end{frame}
+	
+	\begin{frame}{Complexidade de Tempo}
+		\begin{block}{Definição 7.1}
+			Seja $M$ uma máquina de Turing determinística que pára sobre todas as entradas. O tempo de execução ou {\bf complexidade de tempo} de $M$ é a função $f : \mathbb{N} \rightarrow \mathbb{N}$, em que $f(n)$ é o número máximo de passos
+que $M$ usa sobre qualquer entrada de comprimento $n$.
+ 
+\vspace*{0.3cm}
+
+Se $f(n)$ for o tempo de execução de $M$, dizemos que $M$ {\it roda} em tempo $f(n)$ e que $M$ é uma máquina de Turing {\it de tempo} $f(n)$. Costumeiramente usamos $n$ para representar o comprimento da entrada.
+		\end{block}
+	\end{frame}
+	
+	\begin{frame}{Complexidade de Tempo}
+		\begin{block}{Notação O-Grande}
+			Sejam $f$ e $g$ funções $f,g:\mathbb{N} \rightarrow \mathbb{R}^+$ . \\Vamos dizer que $f(n) = O(g(n))$ se inteiros positivos $c$ e $n_0$ existem tais que para todo inteiro $n \geq n_0$ em que
+			\begin{center}
+				$f(n) \leq c.g(n)$			
+			\end{center}
+Quando $f(n) = O(g(n))$, dizemos que $g(n)$ é um {\bf limitante superior} para $f(n)$, ou mais precisamente, que $g(n)$ é um {\bf limitante superior assintótico} para $f(n)$, para enfatizar que estamos suprimindo fatores constantes.
+		\end{block}
+	\end{frame}
+	
+	\begin{frame}{Complexidade de Tempo}
+		\begin{center}
+    		\includegraphics[width=11cm]{images/crescimento.png}
+    		
+    		{\bf Figura:} Comportamento das notações $\Theta$, $O$ e $\Omega$.
+  		\end{center}
+	\end{frame}	
+	
+	\begin{frame}{Complexidade de Tempo}
+		\begin{block}{$f_1 (n) = 5n^3 + 2n^2 + 22n + 6$}
+			\begin{eqnarray}
+				O(f_1(n)) & = & O(5n^3 + 2n^2 + 22n + 6)\\
+						  & = & O(5n^3)\\
+						  & = & O(n^3)
+			\end{eqnarray}
+		\end{block} \pause
+		\begin{exampleblock}{É verdade porque...}
+			Basta admitir $c = 6$, e $n_0 = 10$. Logo
+			\begin{center}
+				$5n^3 + 2n^2 + 22n + 6 \leq 6n^3$
+			\end{center}
+			para todo $n \geq 10$.
+		\end{exampleblock}
+	\end{frame}
+	
+	\begin{frame}{Complexidade de Tempo}
+		\begin{block}{$f_1 (n) = 5n^3 + 2n^2 + 22n + 6$}
+			\begin{eqnarray}
+				O(f_1(n)) & = & O(5n^3 + 2n^2 + 22n + 6)\\
+						  & = & O(5n^3)\\
+						  & = & O(n^3)
+			\end{eqnarray}
+		\end{block} \pause
+		\begin{exampleblock}{Também é verdade dizer que...}
+			$f_1(n) = O(n^4)$, pois $n^4$ é maior que $n^3$ e portanto é ainda um limitante assintótico superior sobre $f_1$.
+		\end{exampleblock} \pause
+		\begin{alertblock}{Mas...}
+			$f_1(n) \not= O(n^2)$.
+		\end{alertblock}
+	\end{frame}
+	
+	\begin{frame}{Complexidade de Tempo}
+		\begin{block}{$f_2 (n) = \mbox{log}_{13} n + 5$}
+			\begin{eqnarray} \pause
+				O(f_2(n)) & = & O(\mbox{log}_{13} n + 5)\\
+						  & = & O(\mbox{log}_{13} n)\\
+						  & = & O(\mbox{log} n)
+			\end{eqnarray}
+		\end{block} \pause
+		\begin{exampleblock}{Porque...}
+			$\mbox{log} n = \mbox{log}_{10} n  = \frac{\mbox{log}_{13} n}{\mbox{log}_{13} 10}$
+		\end{exampleblock}
+	\end{frame}
+	
+	\begin{frame}{Complexidade de Tempo}
+		\begin{block}{$f_3 (n) =  3n \mbox{log}_2 n + 5n \mbox{log}_2 \mbox{log}_2 n + 2$}
+			\begin{eqnarray} \pause
+				O(f_3(n)) & = & O(3n \mbox{log}_2 n + 5n \mbox{log}_2 \mbox{log}_2 n + 2)\\
+						  & = & O(3n \mbox{log}_2 n)\\
+						  & = & O(n \mbox{log} n)
+			\end{eqnarray}
+		\end{block} \pause
+		\begin{exampleblock}{Porque...}
+			$n \mbox{log} n$ domina sobre $\mbox{log} \mbox{log} n$.
+		\end{exampleblock}
+	\end{frame}
+	
+	\begin{frame}
+		\titlepage
+	\end{frame}
+	
+\end{document}
