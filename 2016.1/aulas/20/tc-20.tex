@@ -1,0 +1,332 @@
+\documentclass[xcolor=dvipsnames,table]{beamer}
+
+\usepackage{latexsym}
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{stmaryrd}
+\usepackage{fancybox}
+\usepackage{datetime}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{graphics}
+\usepackage{url}
+\usepackage{algorithmic}
+\usepackage{algorithm}
+\usepackage{acronym}
+\usepackage{array}
+\usepackage[normalem]{ulem}
+
+\newtheorem{definicao}{Definio}
+\newcommand{\tab}{\hspace*{2em}}
+
+\mode<presentation>
+{
+  \definecolor{colortexto}{RGB}{0,0,0}
+ 
+  \setbeamertemplate{background canvas}[vertical shading][ bottom=white!10,top=white!10]
+  \setbeamercolor{normal text}{fg=colortexto} 
+
+  \usetheme{Warsaw}
+}
+
+\title{Classe NP} 
+
+\author{
+  Esdras Lins Bispo Jr. \\ \url{bispojr@ufg.br}
+  } 
+ \institute{
+  Teoria da Computação \\Bacharelado em Ciência da Computação}
+\date{\textbf{26 de julho de 2016} }
+
+\logo{\includegraphics[width=1cm]{images/ufgJataiLogo.png}}
+
+\begin{document}
+
+	\begin{frame}
+		\titlepage
+	\end{frame}
+
+	\AtBeginSection{
+		\begin{frame}{Sumário}%[allowframebreaks]{Sumário}
+    		\tableofcontents[currentsection]
+    		%\tableofcontents[currentsection, hideothersubsections]
+		\end{frame}
+	}
+
+	\begin{frame}{Plano de Aula}
+		\tableofcontents
+		%\tableofcontents[hideallsubsections]
+	\end{frame}
+    
+    \section{Pensamento}
+	\begin{frame}{Pensamento}
+  		\begin{center}
+    		\includegraphics[width=7cm]{images/pensamento.png}
+  		\end{center}
+	\end{frame}
+	
+	\begin{frame}{Pensamento}
+		\begin{columns}
+			\column{.4\textwidth}  		
+		  		\begin{center}
+		    		\includegraphics[height=.5\textheight]{images/horacio.jpg}
+		  		\end{center}
+			\column{.6\textwidth}  		
+				\begin{block}{Frase}
+					\begin{center}
+						{\large A força bruta, quando não é governada pela razão, desmorona sob o seu próprio peso.}
+					\end{center}
+				\end{block}		  		
+		  		\begin{block}{Quem?}
+		  			\begin{center}
+						{\bf Quinto Horácio (65 a.C. - 8 a.C.)} \\ Filósofo e poeta romano.
+					\end{center}
+				\end{block}
+		\end{columns}
+	\end{frame}
+	
+%------------------------------------------
+
+\section{Revisão}	
+	\subsection{Classe P}
+	
+	\begin{frame}{A Classe P}
+		\begin{block}{Problema do caminho em um grafo}
+			$CAM = \{ \langle G, s, t \rangle \mbox{ | } G$ é um grafo direcionado que tem um caminho direcionado de $s$ para $t \}$.
+		\end{block} 
+		\begin{center}
+			\includegraphics[width=8cm]{images/cam.png}
+		\end{center}
+	\end{frame}
+	
+	\begin{frame}{A Classe P}
+		\begin{block}{Teorema 7.14}
+			$CAM \in$ {\bf P}
+		\end{block} 
+		\begin{block}{Prova}
+			$M$ = ``Sobre a cadeia de entrada $\langle G, s, t \rangle$ em que $G$ é um grafo direcionado com nós $s$ e $t$:
+			\begin{enumerate}
+				\item Ponha uma marca sobre o nó $s$.
+				\item Repita o seguinte até que nenhum nó adicional seja marcado:
+				\begin{enumerate}
+					\item Faça uma varredura em todas as arestas de $G$. Se uma aresta $(a,b)$ for encontrada indo de um nó marcado $a$ para um nó não marcado $b$, marque o nó $b$.
+				\end{enumerate}
+				\item Se $t$ estiver marcado, {\it aceite}. Caso contrário, {\it rejeite}.
+			\end{enumerate}
+		\end{block}
+	\end{frame}
+	
+	\begin{frame}{A Classe P}
+		\begin{block}{Problema dos números primos entre si}
+			PRIM-ES $= \{ \langle x,y \rangle \mbox{ | } x$ e $y$ são primos entre si $\}$.
+		\end{block} 
+		\begin{block}{Teorema 7.15}
+			PRIM-ES $\in$ {\bf P}
+		\end{block}
+	\end{frame}
+	
+	\begin{frame}{A Classe P}
+		\begin{block}{Prova (Parte 1): Algoritmo de Euclides (E)}
+			$E$ = ``Sobre a cadeia de entrada $\langle x, y \rangle$ em que $x$ e $y$ são números naturais em binário:
+			\begin{enumerate}
+				\item Repita até que $y = 0$:
+					\begin{enumerate}
+						\item Atribua $x \leftarrow x$ mod $y$.
+						\item Intercambie $x$ e $y$.
+					\end{enumerate}
+				\item Dê como saída $x$''.
+			\end{enumerate}
+		\end{block} 
+		\begin{block}{Prova (Parte 2): Máquina de Turing que decide PRIM-ES}
+			$R$ = ``Sobre a cadeia de entrada $\langle x, y \rangle$ em que $x$ e $y$ são números naturais em binário:
+			\begin{enumerate}
+				\item Rode $E$ sobre $\langle x, y \rangle$.
+				\item Se o resultado for 1, {\it aceite}. Caso contrário, {\it rejeite}''.
+			\end{enumerate}
+		\end{block}
+	\end{frame}
+	
+	\subsection{Classe NP}		
+	\begin{frame}[shrink]{Classe NP}
+		\begin{block}{Questão}
+			\begin{itemize}
+				\item Tentativas de evitar a força bruta em alguns problemas não têm sido bem sucedidas. 
+				\item Não se sabe se existem algoritmos de tempo polinomial que resolvem determinados problemas.
+			\end{itemize}
+		\end{block} 
+		\begin{block}{Possíveis soluções...}
+			\begin{itemize}
+				\item Os algoritmos polinomiais para estes problemas utilizam técnicas desconhecidas; {\it ou} 
+				\item Os algoritmos polinomiais para estes problemas simplesmente {\bf não existem}.
+			\end{itemize}
+		\end{block} 
+		\begin{exampleblock}{Curioso...}
+			Existe um grupo de problemas deste tipo que, existindo um algoritmo polinomial que resolve um destes problemas, é possível resolver todos os problemas do grupo.
+		\end{exampleblock}
+	\end{frame}	
+	
+	\section{Classe NP}				
+	
+	\begin{frame}{A Classe NP}
+		\begin{block}{Problema do {\bf caminho hamiltoniano} em um grafo}
+			$CAMHAM = \{ \langle G, s, t \rangle \mbox{ | } G$ é um grafo direcionado com um caminho hamiltoniano de $s$ para $t \}$.
+		\end{block}
+		\begin{center}
+			\includegraphics[width=9cm]{images/camHam.png}
+		\end{center}
+	\end{frame}	
+	
+	\begin{frame}[shrink]{Classe NP}
+		\begin{block}{Característica importante}
+			O problema $CAMHAM$ tem {\bf verificabilidade polinomial}
+		\end{block} \pause
+		\begin{block}{Outro problema polinomialmente verificável...}
+			$COMPOSTOS = \{ x$ | $x = pq$, para inteiros $p,q > 1 \}$
+		\end{block} \pause
+		\begin{exampleblock}{Exemplo}
+			$33 \in COMPOSTOS$ $\therefore$ \pause
+			\begin{itemize}
+				\item $3 \times 11 = 33$
+				\item $3, 11 \in \mathbb{Z}$
+			\end{itemize}
+		\end{exampleblock} \pause
+		\begin{alertblock}{Porém...}
+			Existem problemas que não podem ser verificados em tempo polinomial. Exemplo: $\overline{CAMHAM}$.
+		\end{alertblock}
+	\end{frame}
+	
+	\begin{frame}{Classe NP}
+		\begin{block}{Definição 7.18}
+			Um {\bf verificador} para uma linguagem $A$ é um algoritmo $V$, em que
+			\begin{center}
+				$A = \{ \omega$ | $V$ aceita $\langle \omega, c \rangle$ para alguma cadeia $c \}$.
+			\end{center}
+		\end{block} \pause
+		\begin{block}{Detalhes}
+			Medimos o tempo de um verificador somente em termos do comprimento de $\omega$, portanto um {\bf verificador de tempo polinomial} roda em tempo polinomial no comprimento de $\omega$. 
+		\end{block} \pause
+		\begin{block}{Nomenclaturas...}
+			Uma linguagem $A$ é {\bf polinomialmente verificável} se ela tem um verificador de tempo polinomial.
+		\end{block}
+	\end{frame}		
+	
+	\begin{frame}{Classe NP}
+		\begin{block}{Certificado (Prova)}
+			\begin{itemize}
+				\item A informação adicional, representada por $c$, utilizada por um verificador é chamada de {\bf certificado} (ou prova) da pertinência a uma dada linguagem. \pause
+				\item Para verificadores polinomiais, o certificado tem comprimento polinomial (no comprimento de $\omega$).
+			\end{itemize}
+		\end{block} \pause
+		\begin{block}{Exemplo}
+			\begin{itemize}
+				\item Um certificado para uma cadeia $\langle G, s, t \rangle \in CAMHAM$ é um caminho hamiltoniano de $s$ a $t$. \pause
+				\item Um certificado para um número composto $x \in COMPOSTOS $ é um dos seus divisores.
+			\end{itemize}
+		\end{block}
+	\end{frame}
+	
+	\begin{frame}[shrink]{Classe NP}
+		\begin{block}{Definição 7.19}
+			{\bf NP} é a classe das linguagens que têm verificadores de tempo polinomial.
+		\end{block} \pause
+		\begin{block}{Teorema 7.20}
+			Uma linguagem está em {\bf NP} sse ela é decidida por alguma máquina de Turing não-determinística de tempo polinomial.
+		\end{block} \pause
+		\begin{block}{Definição 7.21}
+			{\bf NTIME(t(n))} = $\{L$ | $L$ é uma linguagem decidida por uma MT não-determinística de tempo $O(t(n)) \}$.
+		\end{block} \pause
+		\begin{exampleblock}{Corolário}
+			{\bf NP} $ \cong \bigcup_k$ {\bf NTIME($n^k$)}
+		\end{exampleblock}
+	\end{frame}
+	
+	\subsection{CLIQUE}
+	\begin{frame}{A Classe NP}
+		\begin{block}{Problema do clique em um grafo}
+			$CLIQUE = \{ \langle G, k \rangle \mbox{ | } G$ é um grafo não-direcionado com um $k$-clique $\}$.
+		\end{block} \pause
+		\begin{center}
+			\includegraphics[width=8cm]{images/clique.png}
+		\end{center}
+	\end{frame}	
+	
+	\begin{frame}{A Classe NP}
+		\begin{block}{Teorema 7.24}
+			CLIQUE $\in$ {\bf NP}
+		\end{block} \pause
+		\begin{block}{Prova (usando o clique $c$ como certificado para $V$)}
+			$V$ = ``Sobre a cadeia de entrada $\langle \langle G, k \rangle, c \rangle$:
+			\begin{enumerate}
+				\item Teste se $c$ é um conjunto de $k$ nós em $G$;
+				\item Teste se $G$ contém todas as arestas conectando nós em $c$;
+				\item Se ambos os testes retornam positivo, {\it aceite}. Caso contrário, {\it rejeite}.
+			\end{enumerate}
+		\end{block}
+	\end{frame}
+	
+	\begin{frame}{A Classe NP}
+		\begin{block}{Teorema 7.24}
+			CLIQUE $\in$ {\bf NP}
+		\end{block} \pause
+		\begin{block}{Prova (construindo a MTN $M$)}
+			$M$ = ``Sobre a cadeia de entrada $\langle G, k \rangle$, em que $G$ é um grafo:
+			\begin{enumerate}
+				\item Não-deterministicamente selecione um subconjunto $c$ de $k$ nós de $G$;
+				\item Teste se $G$ contém todas as arestas conectando nós em $c$;
+				\item Se sim, {\it aceite}. Caso contrário, {\it rejeite}.
+			\end{enumerate}
+		\end{block}
+	\end{frame}
+	
+	\subsection{SOMA-SUBC}
+	\begin{frame}{A Classe NP}
+		\begin{block}{Problema da mochila}
+			SOMA-SUBC $= \{ \langle S, t \rangle \mbox{ | } S = \{ x_1, \ldots, x_k\}$ e para algum $\{y_1, \ldots, y_l\} \subseteq S$, temos $\sum y_i = t\}$.
+		\end{block}  \pause
+		\begin{center}
+			\includegraphics[width=4.5cm]{images/mochila.png}
+		\end{center}
+	\end{frame}	
+	
+	\begin{frame}{A Classe NP}
+		\begin{block}{Teorema 7.25}
+			SOMA-SUBC $\in$ {\bf NP}
+		\end{block} \pause
+		\begin{block}{Prova (usando um verificador $V$)}
+			$V$ = ``Sobre a entrada $\langle \langle S, t \rangle, c \rangle$:
+			\begin{enumerate}
+				\item Teste se $c$ é uma coleção de números que somam $t$;
+				\item Teste se $S$ contém todos os números em $c$;
+				\item Se ambos os testes retornam positivo, {\it aceite}. Caso contrário, {\it rejeite}.
+			\end{enumerate}
+		\end{block}
+	\end{frame}
+	
+	\begin{frame}{A Classe NP}
+		\begin{block}{Teorema 7.25}
+			SOMA-SUBC $\in$ {\bf NP}
+		\end{block} \pause
+		\begin{block}{Prova (construindo a MTN $M$)}
+			$M$ = ``Sobre a entrada $\langle S, t \rangle$:
+			\begin{enumerate}
+				\item Não-deterministicamente selecione um subconjunto $c$ de números em $S$;
+				\item Teste se $c$ é uma coleção de números que somam $t$;
+				\item Se sim, {\it aceite}. Caso contrário, {\it rejeite}.
+			\end{enumerate}
+		\end{block}
+	\end{frame}
+	
+	\subsection{P {\it versus} NP}
+	\begin{frame}{P {\it versus} NP}
+		\begin{center}
+			\includegraphics[width=9cm]{images/pNp.png}
+		\end{center}
+	\end{frame}	
+	
+	\begin{frame}
+		\titlepage
+	\end{frame}
+	
+\end{document}
