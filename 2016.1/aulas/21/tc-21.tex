@@ -31,14 +31,14 @@
   \usetheme{Warsaw}
 }
 
-\title{Classe NP} 
+\title{Classe NP-Completa} 
 
 \author{
   Esdras Lins Bispo Jr. \\ \url{bispojr@ufg.br}
   } 
  \institute{
   Teoria da Computação \\Bacharelado em Ciência da Computação}
-\date{\textbf{26 de julho de 2016} }
+\date{\textbf{01 de agosto de 2016} }
 
 \logo{\includegraphics[width=1cm]{images/ufgJataiLogo.png}}
 
@@ -89,85 +89,9 @@
 	
 %------------------------------------------
 
-\section{Revisão}	
-	\subsection{Classe P}
+\section{Revisão}
 	
-	\begin{frame}{A Classe P}
-		\begin{block}{Problema do caminho em um grafo}
-			$CAM = \{ \langle G, s, t \rangle \mbox{ | } G$ é um grafo direcionado que tem um caminho direcionado de $s$ para $t \}$.
-		\end{block} 
-		\begin{center}
-			\includegraphics[width=8cm]{images/cam.png}
-		\end{center}
-	\end{frame}
-	
-	\begin{frame}{A Classe P}
-		\begin{block}{Teorema 7.14}
-			$CAM \in$ {\bf P}
-		\end{block} 
-		\begin{block}{Prova}
-			$M$ = ``Sobre a cadeia de entrada $\langle G, s, t \rangle$ em que $G$ é um grafo direcionado com nós $s$ e $t$:
-			\begin{enumerate}
-				\item Ponha uma marca sobre o nó $s$.
-				\item Repita o seguinte até que nenhum nó adicional seja marcado:
-				\begin{enumerate}
-					\item Faça uma varredura em todas as arestas de $G$. Se uma aresta $(a,b)$ for encontrada indo de um nó marcado $a$ para um nó não marcado $b$, marque o nó $b$.
-				\end{enumerate}
-				\item Se $t$ estiver marcado, {\it aceite}. Caso contrário, {\it rejeite}.
-			\end{enumerate}
-		\end{block}
-	\end{frame}
-	
-	\begin{frame}{A Classe P}
-		\begin{block}{Problema dos números primos entre si}
-			PRIM-ES $= \{ \langle x,y \rangle \mbox{ | } x$ e $y$ são primos entre si $\}$.
-		\end{block} 
-		\begin{block}{Teorema 7.15}
-			PRIM-ES $\in$ {\bf P}
-		\end{block}
-	\end{frame}
-	
-	\begin{frame}{A Classe P}
-		\begin{block}{Prova (Parte 1): Algoritmo de Euclides (E)}
-			$E$ = ``Sobre a cadeia de entrada $\langle x, y \rangle$ em que $x$ e $y$ são números naturais em binário:
-			\begin{enumerate}
-				\item Repita até que $y = 0$:
-					\begin{enumerate}
-						\item Atribua $x \leftarrow x$ mod $y$.
-						\item Intercambie $x$ e $y$.
-					\end{enumerate}
-				\item Dê como saída $x$''.
-			\end{enumerate}
-		\end{block} 
-		\begin{block}{Prova (Parte 2): Máquina de Turing que decide PRIM-ES}
-			$R$ = ``Sobre a cadeia de entrada $\langle x, y \rangle$ em que $x$ e $y$ são números naturais em binário:
-			\begin{enumerate}
-				\item Rode $E$ sobre $\langle x, y \rangle$.
-				\item Se o resultado for 1, {\it aceite}. Caso contrário, {\it rejeite}''.
-			\end{enumerate}
-		\end{block}
-	\end{frame}
-	
-	\subsection{Classe NP}		
-	\begin{frame}[shrink]{Classe NP}
-		\begin{block}{Questão}
-			\begin{itemize}
-				\item Tentativas de evitar a força bruta em alguns problemas não têm sido bem sucedidas. 
-				\item Não se sabe se existem algoritmos de tempo polinomial que resolvem determinados problemas.
-			\end{itemize}
-		\end{block} 
-		\begin{block}{Possíveis soluções...}
-			\begin{itemize}
-				\item Os algoritmos polinomiais para estes problemas utilizam técnicas desconhecidas; {\it ou} 
-				\item Os algoritmos polinomiais para estes problemas simplesmente {\bf não existem}.
-			\end{itemize}
-		\end{block} 
-		\begin{exampleblock}{Curioso...}
-			Existe um grupo de problemas deste tipo que, existindo um algoritmo polinomial que resolve um destes problemas, é possível resolver todos os problemas do grupo.
-		\end{exampleblock}
-	\end{frame}	
-	
-	\section{Classe NP}				
+	\subsection{Classe NP}				
 	
 	\begin{frame}{A Classe NP}
 		\begin{block}{Problema do {\bf caminho hamiltoniano} em um grafo}
@@ -181,17 +105,17 @@
 	\begin{frame}[shrink]{Classe NP}
 		\begin{block}{Característica importante}
 			O problema $CAMHAM$ tem {\bf verificabilidade polinomial}
-		\end{block} \pause
+		\end{block} 
 		\begin{block}{Outro problema polinomialmente verificável...}
 			$COMPOSTOS = \{ x$ | $x = pq$, para inteiros $p,q > 1 \}$
-		\end{block} \pause
+		\end{block} 
 		\begin{exampleblock}{Exemplo}
-			$33 \in COMPOSTOS$ $\therefore$ \pause
+			$33 \in COMPOSTOS$ $\therefore$ 
 			\begin{itemize}
 				\item $3 \times 11 = 33$
 				\item $3, 11 \in \mathbb{Z}$
 			\end{itemize}
-		\end{exampleblock} \pause
+		\end{exampleblock} 
 		\begin{alertblock}{Porém...}
 			Existem problemas que não podem ser verificados em tempo polinomial. Exemplo: $\overline{CAMHAM}$.
 		\end{alertblock}
@@ -203,10 +127,10 @@
 			\begin{center}
 				$A = \{ \omega$ | $V$ aceita $\langle \omega, c \rangle$ para alguma cadeia $c \}$.
 			\end{center}
-		\end{block} \pause
+		\end{block} 
 		\begin{block}{Detalhes}
 			Medimos o tempo de um verificador somente em termos do comprimento de $\omega$, portanto um {\bf verificador de tempo polinomial} roda em tempo polinomial no comprimento de $\omega$. 
-		\end{block} \pause
+		\end{block} 
 		\begin{block}{Nomenclaturas...}
 			Uma linguagem $A$ é {\bf polinomialmente verificável} se ela tem um verificador de tempo polinomial.
 		\end{block}
@@ -215,13 +139,13 @@
 	\begin{frame}{Classe NP}
 		\begin{block}{Certificado (Prova)}
 			\begin{itemize}
-				\item A informação adicional, representada por $c$, utilizada por um verificador é chamada de {\bf certificado} (ou prova) da pertinência a uma dada linguagem. \pause
+				\item A informação adicional, representada por $c$, utilizada por um verificador é chamada de {\bf certificado} (ou prova) da pertinência a uma dada linguagem. 
 				\item Para verificadores polinomiais, o certificado tem comprimento polinomial (no comprimento de $\omega$).
 			\end{itemize}
-		\end{block} \pause
+		\end{block} 
 		\begin{block}{Exemplo}
 			\begin{itemize}
-				\item Um certificado para uma cadeia $\langle G, s, t \rangle \in CAMHAM$ é um caminho hamiltoniano de $s$ a $t$. \pause
+				\item Um certificado para uma cadeia $\langle G, s, t \rangle \in CAMHAM$ é um caminho hamiltoniano de $s$ a $t$. 
 				\item Um certificado para um número composto $x \in COMPOSTOS $ é um dos seus divisores.
 			\end{itemize}
 		\end{block}
@@ -230,13 +154,13 @@
 	\begin{frame}[shrink]{Classe NP}
 		\begin{block}{Definição 7.19}
 			{\bf NP} é a classe das linguagens que têm verificadores de tempo polinomial.
-		\end{block} \pause
+		\end{block}
 		\begin{block}{Teorema 7.20}
 			Uma linguagem está em {\bf NP} sse ela é decidida por alguma máquina de Turing não-determinística de tempo polinomial.
-		\end{block} \pause
+		\end{block} 
 		\begin{block}{Definição 7.21}
 			{\bf NTIME(t(n))} = $\{L$ | $L$ é uma linguagem decidida por uma MT não-determinística de tempo $O(t(n)) \}$.
-		\end{block} \pause
+		\end{block}
 		\begin{exampleblock}{Corolário}
 			{\bf NP} $ \cong \bigcup_k$ {\bf NTIME($n^k$)}
 		\end{exampleblock}
@@ -246,7 +170,7 @@
 	\begin{frame}{A Classe NP}
 		\begin{block}{Problema do clique em um grafo}
 			$CLIQUE = \{ \langle G, k \rangle \mbox{ | } G$ é um grafo não-direcionado com um $k$-clique $\}$.
-		\end{block} \pause
+		\end{block}
 		\begin{center}
 			\includegraphics[width=8cm]{images/clique.png}
 		\end{center}
@@ -255,7 +179,7 @@
 	\begin{frame}{A Classe NP}
 		\begin{block}{Teorema 7.24}
 			CLIQUE $\in$ {\bf NP}
-		\end{block} \pause
+		\end{block} 
 		\begin{block}{Prova (usando o clique $c$ como certificado para $V$)}
 			$V$ = ``Sobre a cadeia de entrada $\langle \langle G, k \rangle, c \rangle$:
 			\begin{enumerate}
@@ -269,7 +193,7 @@
 	\begin{frame}{A Classe NP}
 		\begin{block}{Teorema 7.24}
 			CLIQUE $\in$ {\bf NP}
-		\end{block} \pause
+		\end{block} 
 		\begin{block}{Prova (construindo a MTN $M$)}
 			$M$ = ``Sobre a cadeia de entrada $\langle G, k \rangle$, em que $G$ é um grafo:
 			\begin{enumerate}
@@ -279,6 +203,80 @@
 			\end{enumerate}
 		\end{block}
 	\end{frame}
+		
+	\section{P {\it versus} NP}
+	\begin{frame}{P {\it versus} NP}
+		\begin{block}{Se admitirmos frouxamente que...}
+			 Solúvel em tempo polinomial $\cong$ Solúvel ``rapidamente''
+		\end{block} \pause
+		\begin{block}{Podemos admitir que...} \pause
+			\begin{itemize}
+				\item {\bf P:} a classe de linguagens para as quais a pertinência \\pode ser {\it decidida} rapidamente; \pause
+				\item {\bf NP:} a classe de linguagens para as quais a pertinência \\pode ser {\it verificada} rapidamente.
+			\end{itemize}
+		\end{block}
+	\end{frame}
+	
+	\begin{frame}{P {\it versus} NP}
+		\begin{block}{Temos que...} \pause
+			\begin{itemize}
+				\item HAMPATH $\in$ {\bf NP} e 
+				\item CLIQUE $\in$ {\bf NP}
+			\end{itemize}		
+		\end{block} \pause
+		\begin{alertblock}{Mas não sabemos se...} \pause
+			\begin{itemize}
+				\item HAMPATH $\in$ {\bf P} ou 
+				\item CLIQUE $\in$ {\bf P}
+			\end{itemize}		
+		\end{alertblock} \pause
+		\begin{block}{Sabem-se que...}
+			{\bf NP} $\subseteq$ EXPTIME = $\bigcup_k$ {\bf TIME($2^{(n^k)}$)}		
+		\end{block}
+	\end{frame}
+	
+	\begin{frame}{P {\it versus} NP}
+		\begin{center}
+			\includegraphics[width=9cm]{images/pNp.png}
+		\end{center}
+	\end{frame}	
+	
+	\section{NP-Completude}	
+	\begin{frame}{NP-Completude}
+		\begin{block}{Teorema de Cook-Levin (7.27)}
+			SAT $\in$ {\bf P} se, e somente se, {\bf P} = {\bf NP}.
+		\end{block} \pause
+		\begin{block}{Teorema 7.31}
+			Se A $\leq_P$ B e B $\in$ P, então A $\in$ P.
+		\end{block} \pause
+		\begin{block}{Teorema 7.32}
+			3SAT é redutível em tempo polinomial a CLIQUE.
+		\end{block}
+	\end{frame}
+	
+	\begin{frame}{NP-Completude}
+		\begin{block}{Definição de NP-Completude}
+			Uma linguagem B é NP-completa se ela satisfaz duas condições:
+			\begin{enumerate}
+				\item B está em NP, e
+				\item toda A em NP é redutível em tempo polinomial a B.
+			\end{enumerate}
+		\end{block} \pause
+		\begin{block}{Teorema 7.35}
+			Se B for NP-completa e B $\in$ P, então P = NP.
+		\end{block} \pause
+		\begin{block}{Teorema 7.36}
+			Se B for NP-completa e B $\leq_p$ C para C $\in$ NP, então C é NP-completa.
+		\end{block}
+	\end{frame}
+	
+	\begin{frame}{P {\it versus} NP}
+		\begin{block}{Se P $\subseteq$ NP, então...}
+			\begin{center}
+				\includegraphics[width=6cm]{images/np_completo2.png}
+			\end{center}
+		\end{block}		
+	\end{frame}	
 	
 	\begin{frame}
 		\titlepage
