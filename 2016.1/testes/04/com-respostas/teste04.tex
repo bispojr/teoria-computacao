@@ -1,0 +1,102 @@
+\documentclass[12pt,a4paper,oneside]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[portuguese]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{xcolor}
+% Definindo novas cores
+\definecolor{verde}{rgb}{0.25,0.5,0.35}
+
+\author{\\Universidade Federal de Goiás (UFG) - Regional Jataí \\Bacharelado em Ciência da Computação \\Teoria da Computação \\Esdras Lins Bispo Jr.}
+
+\date{02 de agosto de 2016}
+
+\title{\sc \huge Quarto Teste}
+
+\begin{document}
+
+\maketitle
+
+{\bf ORIENTAÇÕES PARA A RESOLUÇÃO}
+
+\begin{itemize}
+	\item A avaliação é individual, sem consulta;
+	\item A pontuação máxima desta avaliação é 10,0 (dez) pontos, sendo uma das 06 (seis) componentes que formarão a média final da disciplina: quatro testes, uma prova e exercícios;
+	\item A média final ($MF$) será calculada assim como se segue
+	\begin{eqnarray}
+		MF & = & MIN(10, S) \nonumber \\
+		S & = & (\sum_{i=1}^{4} 0,2.T_i ) + 0,2.P  + 0,1.E \nonumber
+	\end{eqnarray}
+	em que 
+	\begin{itemize}
+		\item $S$ é o somatório da pontuação de todas as avaliações,
+		\item $T_i$ é a pontuação obtida no teste $i$,
+		\item $P$ é a pontuação obtida na prova, e
+		\item $E$ é a pontuação total dos exercícios.
+	\end{itemize}
+	\item O conteúdo exigido desta avaliação compreende o seguinte ponto apresentado no Plano de Ensino da disciplina: (5) Complexidade de Tempo e (6) NP-Completude.
+\end{itemize}
+
+\begin{center}
+	\fbox{\large Nome: \hspace{10cm}}
+	\fbox{\large Assinatura: \hspace{9cm}}
+\end{center}
+
+\newpage
+
+\begin{enumerate}
+	
+	\section*{Quarto Teste}
+	
+	\item (5,0 pt) Mostre que {\bf NP} é fechada sob a operação de concatenação. \\
+	
+	{\color{verde}
+		{\bf Prova:} Sejam $A$ e $B$ duas linguagens decidíveis em $NP$. Sejam $M_A$ e $M_B$ duas máquinas de Turing não-determinísticas que decidem as linguagens $A$ e $B$, respectivamente (pois se uma linguagem é decidível, então uma máquina de Turing a decide). Como $A$ e $B$ são decidíveis em tempo polinomial não-determinístico, $A$ e $B$ pertencem a {\sc NTIME}$(n^k)$ e {\sc NTIME}$(n^l)$ respectivamente (em que $k$ e $l$ são números naturais).  Iremos construir a máquina de Turing não-determinística $M_{aux}$, a partir de $M_A$ e $M_B$, que decide $A \circ B$ em tempo polinomial não-determinístico. A descrição de $M_{aux}$ é dada a seguir:
+			
+			$M_{aux}$ = ``Sobre a entrada $\omega$, faça:
+			\begin{enumerate}
+				\item Não-deterministicamente selecione um corte de $\omega$, \\de forma que $\omega = \omega_A \circ \omega_B$:
+				\begin{enumerate}
+					\item Rode $M_A$ sobre $\omega_A$.
+					\item Rode $M_B$ sobre $\omega_B$.
+					\item Se $M_A$ e $M_B$ aceitam, {\it aceite}.
+					\item Caso contrário, {\it rejeite}''.
+				\end{enumerate}
+			\end{enumerate}
+			
+			O tempo de execução $t$ de $M_{aux}$ é igual a soma do tempo de execução dos passos (a), (i), (ii), (iii) e (iv). Logo, $t = O(n) + O(n^k) + O(n^l) + O(1) + O(1) = O(n^{max(k,l)})$. 
+			
+			Seja  $c = max(k,l)$. Temos assim, $t = O(n^c)$. Como $c$ é um número natural, $A \circ B \in$ {\sc NTIME}$(n^c)$ e, consequentemente, $A \circ B \in NP$. Logo, podemos afirmar que $NP$ é fechada sob a operação de concatenação $\blacksquare$
+	}
+	
+	\newpage
+	
+	\item (5,0 pt) Um triângulo em um grafo não-direcionado é um 3-clique. Mostre que TRIANGULO $\in$ {\bf P}, em que 
+	\begin{center}
+		TRIANGULO = $\{ \langle G \rangle$ \mbox{ | } $G$ contém um triângulo $\}$.
+	\end{center}
+		{ \color{verde}
+				{\bf Prova:} Se TRIANGULO $\in$ {\bf P}, então é possível construir uma máquina de Turing simples que a decide em tempo polinomial. Construiremos $M$ que decide TRIANGULO:
+			
+			$M$ = ``Sobre a entrada $\langle G \rangle$, em que $G$ é um grafo não-direcionado, faça:
+			\begin{enumerate}
+				\item Para cada conjunto distinto $C$ com três vértices de $G$, faça:
+					\begin{enumerate}
+						\item Verifique se $C$ forma um 3-clique em $G$.
+						\item Se sim, {\it aceite}.
+					\end{enumerate}
+				\item {\it Rejeite}''.
+			\end{enumerate}
+			
+			O tempo de execução $t$ de $M$ é igual a soma do tempo de execução dos passos (a) e (b). Logo, $t = O(n^3)(O(n^2) + O(1)) + O(1)= O(n^5)$. 
+			
+			5 é um número natural e TRIANGULO $\in$ {\sc TIME}$(n^5)$. Logo, podemos afirmar que TRIANGULO $\in$ {\bf P} $\blacksquare$
+			}
+			
+\end{enumerate}
+
+\end{document}
