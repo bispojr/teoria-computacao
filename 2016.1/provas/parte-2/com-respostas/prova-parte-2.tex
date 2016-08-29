@@ -1,0 +1,165 @@
+\documentclass[12pt,a4paper,oneside]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[portuguese]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{xcolor}
+% Definindo novas cores
+\definecolor{verde}{rgb}{0.25,0.5,0.35}
+
+\author{\\Universidade Federal de Goiás (UFG) - Regional Jataí Jataí\\Bacharelado em Ciência da Computação \\Teoria da Computação \\Esdras Lins Bispo Jr.}
+
+\date{29 de agosto de 2016}
+
+\title{\sc \huge Prova (Parte 2)}
+
+\begin{document}
+
+\maketitle
+
+{\bf ORIENTAÇÕES PARA A RESOLUÇÃO}
+{ \footnotesize
+\begin{itemize}
+	\item A avaliação é individual, sem consulta;
+	\item A pontuação máxima desta avaliação é 10,0 (dez) pontos, sendo uma das 06 (seis) componentes que formarão a média final da disciplina: quatro testes, uma prova e exercícios;
+	\item A média final ($MF$) será calculada assim como se segue
+	\begin{eqnarray}
+		MF & = & MIN(10, S) \nonumber \\
+		S & = & (\sum_{i=1}^{4} 0,2.T_i ) + 0,2.P  + EB \nonumber
+	\end{eqnarray}
+	em que 
+	\begin{itemize}
+		\item $S$ é o somatório da pontuação de todas as avaliações,
+		\item $T_i$ é a pontuação obtida no teste $i$,
+		\item $P$ é a pontuação obtida na prova, e
+		\item $EB$ é a pontuação total dos exercícios-bônus.
+	\end{itemize}
+	\item O conteúdo exigido desta avaliação compreende o seguinte ponto apresentado no Plano de Ensino da disciplina:  (3) Problemas Decidíveis, (4) Problemas Indecidíveis, (5) Complexidade de Tempo e (6) NP-Completude.
+\end{itemize}
+
+\begin{center}
+	\fbox{\large Nome: \hspace{10cm}}
+	\fbox{\large Assinatura: \hspace{9cm}}
+\end{center}
+}
+\newpage
+
+\begin{enumerate}
+	
+	\section*{Terceiro Teste}
+	
+	\item (5,0 pt) Seja $\mathcal{B}$ o conjunto de todas as sequências infinitas sobre $\{0,1\}$. Mostre que $\mathcal{B}$ é
+incontável, usando uma prova por diagonalização.
+	
+	\vspace*{0.5cm}	
+	
+	{\color{blue}
+		{\bf Prova:} Vamos supor por um momento que $\mathcal{B}$ seja contável. Se $\mathcal{B}$ for contável, então existe uma bijeção entre $\mathcal{B}$ e $\mathbb{N}$. Ora, é possível construir $x \in \mathcal{B}$ de forma que $x$ não participe desta bijeção. $x$ pode ser construído da seguinte forma:
+			\begin{itemize}
+				\item Seja $f(n)$ a suposta bijeção existente (em que $n \in \mathbb{N}$);
+				\item Se 0 é o valor de um dígito, então 1 é o seu valor oposto; \\
+					  e se 1 é o valor de um dígito, então 0 é o seu valor oposto;
+				\item Seja a $n$-ésima correspondência de $f(n)$ o par $\langle n, f(n) \rangle$;
+				\item Construa $x$ de forma que, para todos os seus dígitos, seu $n$-ésimo dígito seja formado pelo valor oposto do $n$-ésimo dígito de $f(n)$ da $n$-ésima correspondência.
+			\end{itemize}
+			Assim, $x \in \mathcal{B}$, mas não participa da bijeção. Isto é absurdo. Logo, esta bijeção não existe. Por isso, $\mathcal{B}$ é incontável $\blacksquare$
+	}
+	
+	\newpage
+	
+	\item (5,0 pt) Esta fórmula é satisfazível?
+		\begin{center}
+			$ \neg x \wedge (y \vee z) \wedge (\neg y \vee x)$
+		\end{center}
+		Justifique a sua resposta.
+		
+		\vspace*{0.5cm}
+		
+		{\color{blue}
+			Sim, é satisfazível. Basta atribuirmos para $x$, $y$ e $z$ os valores 0, 0 e 1, respectivamente. Esta valoração garante à fórmula o valor 1, tornando-a satisfazível.
+		}
+		
+		\newpage
+		
+	
+	\section*{Quarto Teste}
+	
+	\item (5,0 pt) Seja CONEXO = $\{ \langle G \rangle$ | $G$ é um grafo simples conexo $\}$. \\Mostre que CONEXO está em {\bf P}.
+	
+	\vspace*{0.5cm}
+	
+	{\color{blue}
+		{\bf Prova:} Se CONEXO $\in$ {\bf P}, então é possível construir uma máquina de Turing simples que a decide em tempo polinomial. Construiremos $M$ que decide CONEXO:
+			
+			$M$ = ``Sobre a entrada $\langle G \rangle$, a codificação de um grafo $G$:
+				\begin{enumerate}
+					\item Selecione o primeiro nó de $G$ e marque-o.
+					\item Repita o seguinte estágio até que nenhum novo nó seja marcado:
+						\begin{enumerate}
+							\item Para cada nó em $G$, marque-o se ele está ligado por uma aresta a um nó que já está marcado.
+						\end{enumerate}
+					\item Faça uma varredura em todos os nós de $G$ para determinar se eles estão todos marcados. 
+					\item Se eles estão, {\it aceite}; caso contrário, {\it rejeite}''.
+				\end{enumerate}
+			
+			O tempo de execução $t$ de $M$ é igual a soma do tempo de execução dos passos (a), (b), (c) e (d). Logo, $t = O(1) + O(n)\times O(n^3) + O(n) + O(1)= O(n^4)$. 4 é um número natural e CONEXO $\in$ {\sc TIME}$(n^5)$. Logo, podemos afirmar que CONEXO $\in$ {\bf P} $\blacksquare$
+	}
+	
+	\newpage
+	
+	\item (5,0 pt) Mostre que {\bf NP} é fechada sob operação de intersecção.
+	
+	\vspace{0.3cm}
+	
+	{\color{blue}
+		{\bf Prova:} Sejam $A$ e $B$ duas linguagens decidíveis em $NP$. Sejam $M_A$ e $M_B$ duas máquinas de Turing não-determinísticas que decidem as linguagens $A$ e $B$, respectivamente (pois se uma linguagem é decidível, então uma máquina de Turing a decide). Como $A$ e $B$ são decidíveis em tempo polinomial não-determinístico, $A$ e $B$ pertencem a {\sc NTIME}$(n^k)$ e {\sc NTIME}$(n^l)$ respectivamente (em que $k$ e $l$ são números naturais).  Iremos construir a máquina de Turing não-determinística $M_{aux}$, a partir de $M_A$ e $M_B$, que decide $A \cap B$ em tempo polinomial não-determi\-nís\-ti\-co. A descrição de $M_{aux}$ é dada a seguir:
+			
+			$M_{aux}$ = ``Sobre a entrada $\omega$, faça:
+			\begin{enumerate}
+				\item Rode $M_A$ sobre $\omega$.
+				\item Rode $M_B$ sobre $\omega$.
+				\item Se $M_A$ e $M_B$ aceitam, {\it aceite}.
+				\item Caso contrário, {\it rejeite}''.
+			\end{enumerate}
+			
+			O tempo de execução $t$ de $M_{aux}$ é igual a soma do tempo de execução dos passos (a), (b), (c) e (d). Logo, $t = O(n^k) + O(n^l) + O(1) + O(1) = O(n^{max(k,l)})$. 
+			
+			Seja  $c = max(k,l)$. Temos assim, $t = O(n^c)$. Como $c$ é um número natural, $A \cap B \in$ {\sc NTIME}$(n^c)$ e, consequentemente, $A \cap B \in NP$. Logo, podemos afirmar que $NP$ é fechada sob a operação de intersecção $\blacksquare$
+	}
+	
+\end{enumerate}
+
+\section*{Teoremas Auxiliares}
+
+\begin{itemize}
+	
+	\item[] {\bf Definição 1.16:} Uma linguagem é chamada de uma linguagem regular se algum autômato finito a reconhece.
+	\item[] {\bf Teorema 1.25:} A classe de linguagens regulares é fechada sob a operação de união.
+	\item[] {\bf Teorema 1.26:} A classe de linguagens regulares é fechada sob a operação de concatenação.
+	\item[] {\bf Teorema 1.26.1:} A classe de linguagens regulares é fechada sob a operação de complemento.
+	\item[] {\bf Teorema 1.39:} Todo autômato finito não-determinístico tem um autômato finito determinístico
+	equivalente.
+	\item[] {\bf Teorema 1.49:} A classe de linguagens regulares é fechada sob a operação estrela.
+	\item[] {\bf Teorema 1.49.1:} A classe de linguagens regulares é fechada sob a operação de intersecção.
+	\item[] {\bf Teorema 1.54:} Uma linguagem é regular se e somente se alguma expressão regular a descreve.
+	\item[] {\bf Definição 3.5:} Chame uma linguagem de Turing-reconhecível se alguma máquina de Turing a reconhece.
+	\item[] {\bf Definição 3.6:} Chame uma linguagem de Turing-decidível ou simplesmente decidível se alguma máquina de Turing a decide.
+	\item[] {\bf Teorema 3.13:} Toda máquina de Turing multifita tem uma máquina de Turing que lhe é equivalente.
+	\item[] {\bf Teorema 3.16:} Toda máquina de Turing não-determinística tem uma máquina de Turing determinística que lhe é equivalente.
+	\item[] {\bf Teorema 3.21:} Uma linguagem é Turing-reconhecível se e somente se algum enumerador a enumera.
+	\item[] {\bf Teorema 4.1:} $A_{AFD}$ é uma linguagem decidível.
+	\item[] {\bf Teorema 4.2:} $A_{AFN}$ é uma linguagem decidível.
+	\item[] {\bf Teorema 4.3:} $A_{EXR}$ é uma linguagem decidível.
+	\item[] {\bf Teorema 4.4:} $V_{AFD}$ é uma linguagem decidível.
+	\item[] {\bf Teorema 4.5:} $EQ_{AFD}$ é uma linguagem decidível.
+	\item[] {\bf Teorema 4.9:} Toda linguagem livre-de-contexto é decidível.
+	\item[] {\bf Teorema 4.11:} $A_{MT}$ é uma linguagem indecidível.
+	\item[] {\bf Definição 4.14:} Um conjunto $A$ é contável se é finito ou tem o mesmo tamanho que $N$.
+	
+\end{itemize}
+
+\end{document}
