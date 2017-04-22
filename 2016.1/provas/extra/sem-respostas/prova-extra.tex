@@ -1,0 +1,106 @@
+\documentclass[12pt,a4paper,oneside]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[portuguese]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{xcolor}
+% Definindo novas cores
+\definecolor{verde}{rgb}{0.25,0.5,0.35}
+
+\author{\\Universidade Federal de Goiás (UFG) - Regional Jataí Jataí\\Bacharelado em Ciência da Computação \\Teoria da Computação \\Esdras Lins Bispo Jr.}
+
+\date{12 de setembro de 2016}
+
+\title{\sc \huge Prova (Extra)}
+
+\begin{document}
+
+\maketitle
+
+{\bf ORIENTAÇÕES PARA A RESOLUÇÃO}
+{ \footnotesize
+\begin{itemize}
+	\item A avaliação é individual, sem consulta;
+	\item A pontuação máxima desta avaliação é 10,0 (dez) pontos.
+	\item A média final ($MF$) será calculada assim como se segue
+	\begin{eqnarray}
+		MF & = & \left\{
+					\begin{array}{ll}
+						6,0  & \mbox{, se } PE \geq NM \\
+						MA & \mbox{, se } PE < NM
+					\end{array}
+				\right. \nonumber \\
+		NM & = & 10 - MA \nonumber
+	\end{eqnarray}
+	em que 
+	\begin{itemize}
+		\item $PE$ é a pontuação obtida na prova extra,
+		\item $MF$ é a média final na disciplina,
+		\item $MA$ é a média atual na disciplina, e
+		\item $NM$ é a pontuação mínima a ser obtida na prova extra.
+	\end{itemize}
+	\item O conteúdo exigido desta avaliação compreende todos os pontos apresentados no Plano de Ensino da disciplina.
+\end{itemize}
+
+\begin{center}
+	\fbox{\large Nome: \hspace{10cm}}
+	\fbox{\large Assinatura: \hspace{9cm}}
+\end{center}
+}
+\newpage
+
+\begin{enumerate}
+	
+	\item (2,5 pt) É verdade que se uma linguagem é Turing-reconhecível então algum enumerador a enumera. Por que não podemos usar o algoritmo do enumerador abaixo para provar esta afirmação? 
+	
+	Seja $s_1, s_2, \ldots$ uma lista de todas as cadeias em $\Sigma^*$. Seja $M$ uma máquina de Turing que reconhece uma dada linguagem.
+
+E = ``Ignore a entrada.
+	\begin{enumerate}
+		\item Repita o que se segue para $i = 1,2,3, \ldots$;
+		\item Rode $M$ sobre $s_i$;
+		\item Se ela aceita, imprima $s_i$''.
+	\end{enumerate}
+	
+	\item (2,5 pt)  Seja $A = \{ \langle B \rangle$ | $B$ é um AFD e $L(B) = 1^* \}$. Mostre que $A$ é decidível.
+	
+	\item (2,5 pt)  Seja $A = \{ \langle B,C \rangle$ | $B$ é um AFN, $C$ é uma expressão regular e $L(B) \cap L(C) \not= \emptyset \}$. Mostre que $A$ é decidível.
+	
+	\item (2,5 pt) Mostre que {\bf NP} é fechada sob operação de união.
+	
+\end{enumerate}
+
+\section*{Teoremas Auxiliares}
+
+\begin{itemize}
+	
+	\item[] {\bf Definição 1.16:} Uma linguagem é chamada de uma linguagem regular se algum autômato finito a reconhece.
+	\item[] {\bf Teorema 1.25:} A classe de linguagens regulares é fechada sob a operação de união.
+	\item[] {\bf Teorema 1.26:} A classe de linguagens regulares é fechada sob a operação de concatenação.
+	\item[] {\bf Teorema 1.26.1:} A classe de linguagens regulares é fechada sob a operação de complemento.
+	\item[] {\bf Teorema 1.39:} Todo autômato finito não-determinístico tem um autômato finito determinístico
+	equivalente.
+	\item[] {\bf Teorema 1.49:} A classe de linguagens regulares é fechada sob a operação estrela.
+	\item[] {\bf Teorema 1.49.1:} A classe de linguagens regulares é fechada sob a operação de intersecção.
+	\item[] {\bf Teorema 1.54:} Uma linguagem é regular se e somente se alguma expressão regular a descreve.
+	\item[] {\bf Definição 3.5:} Chame uma linguagem de Turing-reconhecível se alguma máquina de Turing a reconhece.
+	\item[] {\bf Definição 3.6:} Chame uma linguagem de Turing-decidível ou simplesmente decidível se alguma máquina de Turing a decide.
+	\item[] {\bf Teorema 3.13:} Toda máquina de Turing multifita tem uma máquina de Turing que lhe é equivalente.
+	\item[] {\bf Teorema 3.16:} Toda máquina de Turing não-determinística tem uma máquina de Turing determinística que lhe é equivalente.
+	\item[] {\bf Teorema 3.21:} Uma linguagem é Turing-reconhecível se e somente se algum enumerador a enumera.
+	\item[] {\bf Teorema 4.1:} $A_{AFD}$ é uma linguagem decidível.
+	\item[] {\bf Teorema 4.2:} $A_{AFN}$ é uma linguagem decidível.
+	\item[] {\bf Teorema 4.3:} $A_{EXR}$ é uma linguagem decidível.
+	\item[] {\bf Teorema 4.4:} $V_{AFD}$ é uma linguagem decidível.
+	\item[] {\bf Teorema 4.5:} $EQ_{AFD}$ é uma linguagem decidível.
+	\item[] {\bf Teorema 4.9:} Toda linguagem livre-de-contexto é decidível.
+	\item[] {\bf Teorema 4.11:} $A_{MT}$ é uma linguagem indecidível.
+	\item[] {\bf Definição 4.14:} Um conjunto $A$ é contável se é finito ou tem o mesmo tamanho que $N$.
+	
+\end{itemize}
+
+\end{document}
