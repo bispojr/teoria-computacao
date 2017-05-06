@@ -124,10 +124,10 @@
 	\begin{frame}{Instrumentos de Avaliação}
 		\begin{block}{Mini-Testes}
 			\begin{itemize}
-				\item MT$_1$ $\Rightarrow$ 20\% da pontuação total (16 de maio);
-				\item MT$_2$ $\Rightarrow$ 20\% da pontuação total (13 de junho);
-				\item MT$_3$ $\Rightarrow$ 20\% da pontuação total (28 de junho);
-				\item MT$_4$ $\Rightarrow$  20\% da pontuação total (08 de agosto).
+				\item MT$_1$ $\Rightarrow$ 20\% da pontuação total;
+				\item MT$_2$ $\Rightarrow$ 20\% da pontuação total;
+				\item MT$_3$ $\Rightarrow$ 20\% da pontuação total;
+				\item MT$_4$ $\Rightarrow$  20\% da pontuação total.
 			\end{itemize}
 		\end{block} \pause
 		\begin{block}{Exercício de Aquecimento (EA)}
@@ -159,34 +159,25 @@
 			\end{itemize}
 			em que MIN representa o mínimo entre dois valores e PONT representa a pontuação total obtida em toda a disciplina, dada da seguinte forma:
 			\begin{center}
-				PONT = $\left[ \sum\limits_{i=1}^{4} \mbox{max}(MT_i, SMT_i) + PF \right] \times 0,2 + EA \times 0,1$
+				PONT = $\left[ \sum\limits_{i=1}^{4} \mbox{max}(MT_i, SMT_i) + PF \right] \times 0,2 + EA \times 0,1 + EB$
 			\end{center}
 		\end{block} \pause
 		\begin{exampleblock}{Previsão de Término das Atividades}
-			06 de setembro de 2016
+			06 de setembro de 2017
 		\end{exampleblock}
 	\end{frame}
 	
 	\subsection{Distintivos Digitais}
 	\begin{frame}{Distintivos Digitais}
 		\begin{block}{Como será?}
-			Os alunos que estiverem entre as 10 melhores notas de cada avaliação receberão um distintivo digital.
+			Os alunos que estiverem entre as 5 melhores notas de cada avaliação receberão um distintivo digital.
 		\end{block} \pause
 		\begin{block}{Quantos distintivos existem?}
 			\begin{itemize}
 				\item {\sc Top One}
+				\item {\sc Top Two}
 				\item {\sc Top Five}
-				\item {\sc Top Ten}
 			\end{itemize}
-		\end{block}
-	\end{frame}
-	
-	\begin{frame}{Distintivos Digitais}
-		\begin{block}{}
-			\begin{center}
-				\includegraphics[height=.65\textheight]{images/badges/top-ten.png}
-			\end{center}		
-			Obter a 6ª ou até a 10ª melhor nota da turma em uma avaliação. 
 		\end{block}
 	\end{frame}
 	
@@ -195,7 +186,16 @@
 			\begin{center}
 				\includegraphics[height=.65\textheight]{images/badges/top-five.png}
 			\end{center}		
-			Obter a 2ª ou até a 5ª melhor nota da turma em uma avaliação. 
+			Obter a 3ª ou até a 5ª melhor nota da turma em uma avaliação. 
+		\end{block}
+	\end{frame}
+
+	\begin{frame}{Distintivos Digitais}
+		\begin{block}{}
+			\begin{center}
+				\includegraphics[height=.65\textheight]{images/badges/top-two.png}
+			\end{center}		
+			Obter a 2ª melhor nota da turma em uma avaliação. 
 		\end{block}
 	\end{frame}
 	
@@ -212,8 +212,8 @@
 		\begin{block}{Pontuação}
 			\begin{itemize}
 				\item Obter um {\sc Top One}: 12 pontos;
-				\item Obter um {\sc Top Five}: 6 pontos;
-				\item Obter um {\sc Top Ten}: 3 pontos.
+				\item Obter um {\sc Top Two}: 8 pontos;
+				\item Obter um {\sc Top Five}: 6 pontos.
 			\end{itemize}
 		\end{block} \pause
 		\begin{exampleblock}{No final da disciplina...}
@@ -326,83 +326,6 @@
 				\end{enumerate}				 
 			
 		\end{itemize}
-	\end{frame}
-	
-	\begin{frame}{Máquinas de Turing (MT)}
-		\begin{center}
-			\includegraphics[height=4cm]{images/harry.png}
-			
-			- {\it Salaminh salah-mês}... tranforme as figuras em inglês!
-		\end{center}
-	\end{frame}	
-	
-	\begin{frame}{Máquinas de Turing (MT)}
-		\begin{center}
-			\includegraphics[height=3.5cm]{images/fig31.png}
-		\end{center}
-	\end{frame}
-	
-	\begin{frame}{Máquinas de Turing (MT)}
-		\begin{block}{Diferenças entre MT e AFDs}
-			\begin{itemize}
-				\item Uma MT pode tanto escrever sobre a fita quanto ler a partir dela;
-				\item A cabeça de leitura-escrita pode mover-se tanto para a esquerda quanto para a direita;
-				\item A fita é infinita;
-				\item Os estados especiais para rejeitar e aceitar fazem efeito imediatamente.
-			\end{itemize}
-		\end{block}
-	\end{frame}
-	
-	\begin{frame}{Máquinas de Turing (MT)}
-		\begin{block}{Construindo uma MT}
-			\begin{center}
-			Construir $M_1$ que reconheça a linguagem $B = \{ \omega \# \omega \mbox{ | } \omega \in \{ 0, 1 \}^* \}$.
-			\end{center}
-		\end{block}
-	\end{frame}
-	
-	\begin{frame}{Máquinas de Turing (MT)}
-		\begin{block}{Descrição de $M_1$}
-			$M_1 =$ ``Sobre a cadeia de entrada $\omega$:
-			\begin{enumerate}
-				\item Faça um zigue-zague ao longo da fita checando posições correspondentes de ambos os lados do símbolo $\#$ para verificar se elas contêm o mesmo símbolo. Se elas não contêm, ou se nenhum $\#$ for encontrado, {\it rejeite}. Marque os símbolos à medida que eles são verificados para manter registro de quais símbolos têm correspondência.
-				\item Quando todos os símbolos à esquerda do $\#$ tiverem sido marcados, verifique a existência de algum símbolo remanecente à direta do $\#$. Se resta algum símbolo, {\it rejeite}; caso contrário, {\it aceite}.
-			\end{enumerate}
-		\end{block}
-	\end{frame}
-	
-	\begin{frame}{Máquinas de Turing (MT)}
-		\begin{center}
-			\includegraphics[height=6cm]{images/fig32.png}
-		\end{center}
-	\end{frame}	
-	
-	\begin{frame}{Máquinas de Turing (MT)}
-		Uma {\bf máquina de Turing} é uma 7-upla $(Q, \Sigma, \Gamma, \delta, q_0, q_{aceita}, q_{rejeita})$, de forma que $Q, \Sigma, \Gamma$ são todos conjuntos finitos e
-
-		\begin{enumerate}
-			\item $Q$ é o conjunto de estados,
-			\item $\Sigma$ é o alfabeto de entrada sem o {\bf símbolo branco} $\sqcup$,
-			\item $\Gamma$ é o alfabeto da fita, em que $\sqcup \in \Gamma$ e $\Sigma \subseteq \Gamma$,
-			\item $\delta : Q \times \Gamma \rightarrow Q \times \Gamma \times \{E, D\}$ é a função de transição,
-			\item $q_0 \in Q$ é o estado inicial,
-			\item $q_{aceita} \in Q$ é o estado de aceitação, e
-			\item $q_{rejeita} \in Q$ é o estado de rejeição, em que $q_{rejeita} \not= q_{aceita}$.
-		\end{enumerate}
-	\end{frame}
-	
-	\begin{frame}{Bônus (0,5 pt)}
-		\begin{block}{Desafio}
-			\begin{itemize}
-				\item Mostre que a linguagem $B = \{ \omega \# \omega \mbox{ | } \omega \in \{ 0, 1 \}^* \}$ \\não é regular; \pause
-                \item Candidaturas até amanhã (03 de maio, 09h30); \pause
-                \item Apresentação e resposta por escrito $\rightarrow$ \\segunda (10 de maio, 11h30); \pause
-                \item 20 minutos de apresentação.
-			\end{itemize}
-		\end{block} \pause
-        \begin{block}{Livro}
-			SIPSER, M. {\bf Introdução à Teoria da Computação}, 2a Edição, Editora Thomson Learning, 2011. \color{blue}{\bf Código Bib.: [004 SIP/int]}.
-		\end{block}
 	\end{frame}
 	
 	\begin{frame}
