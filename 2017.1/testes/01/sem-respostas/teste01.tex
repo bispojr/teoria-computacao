@@ -1,0 +1,91 @@
+\documentclass[12pt,a4paper,oneside]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[portuguese]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{xcolor}
+% Definindo novas cores
+\definecolor{verde}{rgb}{0.25,0.5,0.35}
+
+\author{\\Universidade Federal de Goiás (UFG) - Regional  Jataí\\Bacharelado em Ciência da Computação \\Teoria da Computação \\Esdras Lins Bispo Jr.}
+
+\date{18 de maio de 2017}
+
+\title{\sc \huge Primeiro Teste}
+
+\begin{document}
+
+\maketitle
+
+{\bf ORIENTAÇÕES PARA A RESOLUÇÃO}
+
+\small
+ 
+\begin{itemize}
+	\item A avaliação é individual, sem consulta;
+	\item A pontuação máxima desta avaliação é 10,0 (dez) pontos, sendo uma das 06 (seis) componentes que formarão a média final da disciplina: quatro testes, uma prova e exercícios;
+	\item A média final ($MF$) será calculada assim como se segue
+	\begin{eqnarray}
+		MF & = & MIN(10, S) \nonumber \\
+		S & = & (\sum_{i=1}^{4} 0,2.T_i ) + 0,2.P  + 0,1.EA + EB\nonumber
+	\end{eqnarray}
+	em que 
+	\begin{itemize}
+		\item $S$ é o somatório da pontuação de todas as avaliações,
+		\item $T_i$ é a pontuação obtida no teste $i$,
+		\item $P$ é a pontuação obtida na prova,
+		\item $EA$ é a pontuação total dos exercícios de aquecimentos, e
+		\item $EB$ é a pontuação total dos exercícios-bônus.
+	\end{itemize}
+	\item O conteúdo exigido desta avaliação compreende o seguinte ponto apresentado no Plano de Ensino da disciplina: (1) Teoria da Computação e (2) Modelos de Computação.
+\end{itemize}
+
+\begin{center}
+	\fbox{\large Nome: \hspace{10cm}}
+\end{center}
+
+\newpage
+
+\begin{enumerate}
+	
+	\section*{Primeiro Teste}
+	
+	\item (5,0 pt) Apresentamos logo abaixo a definição formal de uma máquina de Turing:
+	
+	\begin{center}
+	\line(1,0){250}
+	\end{center}	
+	
+	Uma {\bf máquina de Turing} é uma 7-upla $(Q, \Sigma, \Gamma, \delta, q_0, q_{aceita}, q_{rejeita})$, de forma que $Q, \Sigma, \Gamma$ são todos conjuntos finitos e
+	
+		\begin{itemize}
+			\item $Q$ é o conjunto de estados,
+			\item $\Sigma$ é o alfabeto de entrada sem o {\bf símbolo branco} $\sqcup$,
+			\item $\Gamma$ é o alfabeto da fita, em que $\sqcup \in \Gamma$ e $\Sigma \subseteq \Gamma$,
+			\item $\delta : Q \times \Gamma \rightarrow Q \times \Gamma \times \{E, D\}$ é a função de transição,
+			\item $q_0 \in Q$ é o estado inicial,
+			\item $q_{aceita} \in Q$ é o estado de aceitação, e
+			\item $q_{rejeita} \in Q$ é o estado de rejeição, em que $q_{rejeita} \not= q_{aceita}$.
+		\end{itemize}
+		
+	\begin{center}
+	\line(1,0){250}
+	\end{center}		
+		
+	 Responda às seguintes perguntas, justificando a sua resposta.
+	\begin{enumerate}
+		\item (1,0 pt) Uma máquina de Turing pode alguma vez escrever o símbolo branco $\sqcup$ em sua fita?
+		\item (1,5 pt) O alfabeto da fita $\Gamma$ pode ser o mesmo que o alfabeto de entrada $\Sigma$?
+		\item (1,0 pt) A cabeça de uma máquina de Turing pode alguma vez estar na mesma localização em dois passos sucessivos?
+		\item (1,5 pt) Uma máquina de Turing pode conter apenas um único estado?
+	\end{enumerate}
+	
+	\item (5,0 pt) Mostre que a classe de linguagens decidíveis é fechada sob a operação de diferença. (Nota: Pode ser útil saber que $X \setminus Y = X \cap \overline{Y}$).
+
+\end{enumerate}
+
+\end{document}
