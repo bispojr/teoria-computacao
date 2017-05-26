@@ -297,41 +297,6 @@
 		\end{block}
 	\end{frame} 
 	
-	\section{Terminologia para descrever MTs}
-	\begin{frame}{Terminologia para descrever MTs}
-		\begin{block}{Níveis de descrição}
-			\begin{itemize}
-				\item<1,4> {\bf Descrição formal}: esmiúça todos os elementos da 7-upla, conforme definição;
-				\item<2,4> {\bf Descrição de implementação}: descreve a forma pela qual a MT move a sua cabeça e a forma como ela armazena os dados na fita;
-				\item<3,4> {\bf Descrição de alto nível}: neste nível não precisamos mencionar como a máquina administra a sua fita ou sua cabeça de leitura-escrita.
-			\end{itemize}
-		\end{block}
-	\end{frame}
-	
-	\begin{frame}[shrink]{Exemplo}
-		Seja $A$ a linguagem consistindo em todas as cadeias representando grafos não-direcionados que são conexos. Logo:
-		\begin{center}
-			$A = \{\langle G \rangle | G$ é um grafo não-direcionado conexo$\}$
-		\end{center}\pause		
-		\begin{block}{Descrição de alto nível}
-			$M$ = ``Sobre a entrada $\langle G \rangle$, a codificacão de um grafo $G$:
-			\begin{enumerate}
-				\item Selecione o primeiro nó de $G$ e marque-o.
-				\item Repita o seguinte estágio até que nenhum novo nó seja marcado:
-				\begin{enumerate}
-					\item Para cada nó em $G$, marque-o se ele está ligado por uma aresta a um nó que já está marcado.
-				\end{enumerate}
-				\item Faça uma varredura em todos os nós de $G$ para determinar se eles estão todos marcados. Se eles estão, {\it aceite}; caso contrário, {\it rejeite}''.
-			\end{enumerate}
-		\end{block}
-	\end{frame}
-	
-	\begin{frame}{Exemplo}
-		\begin{block}{Pergunta}
-			Como seria a descrição de $M$ no nível de implementação?
-		\end{block}
-	\end{frame}
-	
 	\begin{frame}
 		\titlepage
 	\end{frame}
