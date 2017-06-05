@@ -1,0 +1,243 @@
+\documentclass[xcolor=dvipsnames,table]{beamer}
+
+\usepackage{latexsym}
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{stmaryrd}
+\usepackage{fancybox}
+\usepackage{datetime}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{graphics}
+\usepackage{url}
+\usepackage{algorithmic}
+\usepackage{algorithm}
+\usepackage{acronym}
+\usepackage{array}
+
+\newtheorem{definicao}{Definio}
+\newcommand{\tab}{\hspace*{2em}}
+
+\mode<presentation>
+{
+  \definecolor{colortexto}{RGB}{0,0,0}
+ 
+  \setbeamertemplate{background canvas}[vertical shading][ bottom=white!10,top=white!10]
+  \setbeamercolor{normal text}{fg=colortexto} 
+
+  \usetheme{Warsaw}
+}
+
+\title{Decidibilidade} 
+
+\author{
+  Esdras Lins Bispo Jr. \\ \url{bispojr@ufg.br}
+  } 
+ \institute{
+  Teoria da Computação \\Bacharelado em Ciência da Computação}
+\date{\textbf{05 de junho de 2017} }
+
+\logo{\includegraphics[width=1cm]{images/ufgJataiLogo.png}}
+
+\begin{document}
+
+	\begin{frame}
+		\titlepage
+	\end{frame}
+
+	\AtBeginSection{
+		\begin{frame}{Sumário}%[allowframebreaks]{Sumário}
+    		\tableofcontents[currentsection]
+    		%\tableofcontents[currentsection, hideothersubsections]
+		\end{frame}
+	}
+
+	\begin{frame}{Plano de Aula}
+		\tableofcontents
+		%\tableofcontents[hideallsubsections]
+	\end{frame}
+	
+	\begin{frame}{Bônus (0,5 pt)}
+		\begin{block}{Desafio}
+			\begin{itemize}
+			\item {\bf Problema 4.19:} \\Seja $S = \{ \langle M \rangle \mbox{ | } M$ é um AFD que aceita $\omega^R$ sempre que ele aceita $\omega \}$. Mostre que $S$ é decidível.
+				\item Candidaturas agora; 
+				\item Apresentação e resposta por escrito $\rightarrow$ \\Quinta (08 de junho, 15h30); 
+				\item 10 minutos de apresentação.
+			\end{itemize}
+		\end{block} 
+		\begin{block}{Livro}
+			SIPSER, M. {\bf Introdução à Teoria da Computação}, 2a Edição, Editora Thomson Learning, 2011. \color{blue}{\bf Código Bib.: [004 SIP/int]}.
+		\end{block}
+	\end{frame}
+    
+    \section{Revisão}
+	
+	\subsection{Terminologia para descrever MTs}
+	\begin{frame}{Terminologia para descrever MTs}
+		\begin{block}{Níveis de descrição}
+			\begin{itemize}
+				\item {\bf Descrição formal}: esmiúça todos os elementos da 7-upla, conforme definição;
+				\item {\bf Descrição de implementação}: descreve a forma pela qual a MT move a sua cabeça e a forma como ela armazena os dados na fita;
+				\item {\bf Descrição de alto nível}: neste nível não precisamos mencionar como a máquina administra a sua fita ou sua cabeça de leitura-escrita.
+			\end{itemize}
+		\end{block}
+	\end{frame}
+	
+	\begin{frame}[shrink]{Exemplo}
+		Seja $A$ a linguagem consistindo em todas as cadeias representando grafos não-direcionados que são conexos. Logo:
+		\begin{center}
+			$A = \{\langle G \rangle | G$ é um grafo não-direcionado conexo$\}$
+		\end{center}
+		\begin{block}{Descrição de alto nível}
+			$M$ = ``Sobre a entrada $\langle G \rangle$, a codificacão de um grafo $G$:
+			\begin{enumerate}
+				\item Selecione o primeiro nó de $G$ e marque-o.
+				\item Repita o seguinte estágio até que nenhum novo nó seja marcado:
+				\begin{enumerate}
+					\item Para cada nó em $G$, marque-o se ele está ligado por uma aresta a um nó que já está marcado.
+				\end{enumerate}
+				\item Faça uma varredura em todos os nós de $G$ para determinar se eles estão todos marcados. Se eles estão, {\it aceite}; caso contrário, {\it rejeite}''.
+			\end{enumerate}
+		\end{block}
+	\end{frame}
+	
+	\begin{frame}{Exemplo}
+		\begin{block}{Pergunta}
+			Como seria a descrição de $M$ no nível de implementação?
+		\end{block}
+	\end{frame}
+
+	\subsection{Decidibilidade}
+	\begin{frame}{Introdução}
+		\begin{block}{Propósitos da Teoria da Computação}
+			\begin{itemize}
+				\item Conhecer o poder dos algoritmos;
+				\item Explorar os limites da solubilidade algorítmica;
+				\item Identificar algoritmos insolúveis.
+			\end{itemize}
+		\end{block}
+		\begin{block}{Por que devemos estudar insolubilidade?}
+			\begin{itemize}
+				\item Relaxamento dos requisitos;
+				\item Conhecimento das limitações dos modelos computacionais.
+			\end{itemize}
+		\end{block}
+	\end{frame}
+
+	\section{Decidibilidade}
+	
+	\begin{frame}{Linguagens Decidíveis}
+		\begin{block}{Exemplos de Linguagens Decidíveis}
+			São úteis porque
+			\begin{itemize}
+				\item Algumas linguagens decidíveis estão associadas a aplicações;
+				\item Algumas linguagens aparentemente triviais não são decidíveis.
+			\end{itemize}
+		\end{block} \pause
+		\begin{block}{Problema da aceitação}
+			Dado um modelo computacional $MC$ e uma cadeia de entrada $\omega$, identificar se $MC$ aceita $\omega$.
+		\end{block}	
+	\end{frame}
+	
+	\begin{frame}{Problema da aceitação para AFDs}
+		\begin{block}{Problema da aceitação para AFDs}
+			Dado um AFD $B$ e uma cadeia de entrada $\omega$, identificar se $B$ aceita $\omega$.
+		\end{block}	\pause
+		\begin{block}{Problema}
+			$A_{AFD} = \{ \langle B, \omega \rangle \mbox{ | } B \mbox{ é um AFD que aceita a cadeia de entrada } \omega \}$
+		\end{block} \pause
+		\begin{block}{Estratégia de Resolução}
+			Resolver o problema da aceitação para AFDs é decidir se $\omega \in A_{AFD}$.
+		\end{block}
+	\end{frame}
+	
+	\begin{frame}{Problema da aceitação para AFDs}
+		\begin{block}{Teorema 4.1}
+			$A_{AFD}$ é uma linguagem decidível.
+		\end{block} \pause
+		\begin{block}{Ideia da Prova}
+			$M$ = ``Sobre a entrada $\langle B, \omega \rangle$, em que $B$ é um AFD, e $\omega$, uma cadeia:
+			\begin{enumerate}
+				\item Simule $B$ sobre a entrada $\omega$;
+				\item Se a simulação termina em um estado de aceitação, {\bf aceite}. Senão, {\bf rejeite}.''
+			\end{enumerate}
+		\end{block}
+	\end{frame}
+	
+	\begin{frame}{Problema da aceitação para AFDs}
+		\begin{block}{Detalhes de implementação}
+			\begin{itemize}
+				\item A entrada $\langle B, \omega \rangle$ representa um AFD e uma cadeia;
+				\begin{itemize}
+					\item Uma representação razoável de $B$ seria uma lista de seus cinco componentes: $Q, \Sigma, \delta, q_0$ e $F$;
+					\item $M$ simula $B$ de forma que $M$ {\bf aceita} se $B$ estiver em um estado final, e {\bf rejeita}, caso contrário.
+				\end{itemize}
+			\end{itemize}
+		\end{block}
+	\end{frame}
+	
+	\begin{frame}{Problema da aceitação para AFNs}
+		\begin{block}{Problema da aceitação para AFNs}
+			Dado um AFN $B$ e uma cadeia de entrada $\omega$, identificar se $B$ aceita $\omega$.
+		\end{block}	\pause
+		\begin{block}{Problema}
+			$A_{AFN} = \{ \langle B, \omega \rangle \mbox{ | } B \mbox{ é um AFN que aceita a cadeia de entrada } \omega \}$
+		\end{block} \pause
+		\begin{block}{Estratégia de Resolução}
+			Decidir se $\langle B, \omega \rangle \in A_{AFN}$.
+		\end{block}
+	\end{frame}	
+	
+	\begin{frame}{Problema da aceitação para AFNs}
+		\begin{block}{Teorema 4.2}
+			$A_{AFN}$ é uma linguagem decidível.
+		\end{block} \pause
+		\begin{block}{Prova}
+			$N$ = ``Sobre a entrada $\langle B, \omega \rangle$, em que $B$ é um AFN, e $\omega$, uma cadeia:
+			\begin{enumerate}
+				\item Converta AFN $B$ para um AFD equivalente $C$, usando o procedimento para essa conversão dado no Teorema 1.39;
+				\item Rode a MT $M$ do Teorema 4.1 sobre a cadeia $\langle C, \omega \rangle$;
+				\item Se $M$ aceita, {\bf aceite}. Caso contrário, {\bf rejeite}.''
+			\end{enumerate}
+		\end{block}
+	\end{frame}
+	
+	\begin{frame}{Problema da Vacuidade de uma Linguagem}
+		\begin{block}{Descrição}
+			Dada uma linguagem $L$, identificar se $L = \emptyset$.
+		\end{block}	
+		\begin{block}{Problema aplicado a AFDs}
+			$V_{AFD} = \{ \langle A \rangle \mbox{ | } A \mbox{ é um AFD e } L(A) = \emptyset \}$
+		\end{block} 
+		\begin{block}{Estratégia de Resolução}
+			Decidir se $\langle A \rangle \in V_{AFD}$.
+		\end{block}
+	\end{frame}	
+	
+	\begin{frame}{Problema da Vacuidade de uma Linguagem}
+		\begin{block}{Teorema 4.4}
+			$V_{AFD}$ é uma linguagem decidível.
+		\end{block} \pause
+		\begin{block}{Prova}
+			A seguinte MT $T$ decide $V_{AFD}$.
+			
+			$T$ = ``Sobre a entrada $\langle A \rangle$, em que $A$ é uma AFD:
+			\begin{enumerate}
+				\item Marque o estado inicial de $A$;
+				\item Repita até que nenhum estado novo venha a ser marcado;
+				\begin{enumerate}
+					\item Marque qualquer estado que tenha uma transição chegando nele a partir de qualquer estado que já está marcado.
+				\end{enumerate}
+				\item Se nenhum estado final estiver marcado, {\bf aceite}. Caso contrário, {\bf rejeite}.''
+			\end{enumerate}
+		\end{block}
+	\end{frame}
+	
+	\begin{frame}
+		\titlepage
+	\end{frame}
+	
+\end{document}
