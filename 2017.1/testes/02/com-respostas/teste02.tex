@@ -1,0 +1,124 @@
+\documentclass[12pt,a4paper,oneside]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[portuguese]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{xcolor}
+% Definindo novas cores
+\definecolor{verde}{rgb}{0.25,0.5,0.35}
+
+\author{\\Universidade Federal de Goiás (UFG) - Regional  Jataí\\Bacharelado em Ciência da Computação \\Teoria da Computação \\Esdras Lins Bispo Jr.}
+
+\date{12 de junho de 2017}
+
+\title{\sc \huge Segundo Teste}
+
+\begin{document}
+
+\maketitle
+
+{\bf ORIENTAÇÕES PARA A RESOLUÇÃO}
+
+\small
+ 
+\begin{itemize}
+	\item A avaliação é individual, sem consulta;
+	\item A pontuação máxima desta avaliação é 10,0 (dez) pontos, sendo uma das 06 (seis) componentes que formarão a média final da disciplina: quatro testes, uma prova e exercícios;
+	\item A média final ($MF$) será calculada assim como se segue
+	\begin{eqnarray}
+		MF & = & MIN(10, S) \nonumber \\
+		S & = & (\sum_{i=1}^{4} 0,2.T_i ) + 0,2.P  + 0,1.EA + EB\nonumber
+	\end{eqnarray}
+	em que 
+	\begin{itemize}
+		\item $S$ é o somatório da pontuação de todas as avaliações,
+		\item $T_i$ é a pontuação obtida no teste $i$,
+		\item $P$ é a pontuação obtida na prova,
+		\item $EA$ é a pontuação total dos exercícios de aquecimentos, e
+		\item $EB$ é a pontuação total dos exercícios-bônus.
+	\end{itemize}
+	\item O conteúdo exigido desta avaliação compreende o seguinte ponto apresentado no Plano de Ensino da disciplina:  (2) Modelos de Computação e (3) Problemas Decidíveis.
+\end{itemize}
+
+\begin{center}
+	\fbox{\large Nome: \hspace{10cm}}
+\end{center}\newpage
+
+\begin{enumerate}
+	
+	\section*{Segundo Teste}
+	
+	\item (5,0 pt) Mostre que a coleção de linguagens Turing-reconhecíveis é fechada sob a operação de intersecção.
+	
+	\vspace{0.3cm}
+	
+	{\color{blue} 
+		{\bf Prova:} Sejam duas linguagens Turing-reconhecíveis (TR) quaisquer $A$ e $B$. Sejam $M_A$ e $M_B$ as duas máquinas de Turing (MT) que reconhecem $A$ e $B$, respectivamente (Definição 3.5). Iremos construir uma MT não-determinística (MTN) $M_{aux}$, a partir de $M_A$ e $M_B$, que reconhece $A \cap B$. A descrição de $M_{aux}$ é dada a seguir: 
+		
+		$M_{aux}$ = ``Sobre a entrada $\omega$, faça:
+		\begin{enumerate}
+			\item Rode, não deterministicamente, $M_A$ e $M_B$ sobre a mesma cadeia $\omega$. 
+			\item Se $M_A$ e $M_B$ aceitam, {\it aceite}. 
+			\item Se uma das máquinas rejeita, {\it rejeite}''.
+		\end{enumerate} 
+		
+		Como é possível construir $M_{aux}$, então $A \cap B$ é TR (Teorema 3.16).  Logo, a classe de linguagens Turing-reconhecíveis é fechada sob a operação de intersecção $\blacksquare$
+	}
+	
+	\item (5,0 pt) Seja $\Sigma = \{ 0,1 \}$ e $A = \{\langle M \rangle$ | $M$ é uma expressão regular e $L(M)$ é composta por todas as cadeias que terminam com $1 \}$. Mostre que $A$ é decidível.
+	
+	\vspace{0.3cm}
+	
+	{\color{blue}
+		R - Primeiro será criado um AFD $S$ de forma que $L(S) = \Sigma^* 1$. É possível construir $S$, pois $L(S)$ é regular (Definição 1.16). Ora, é necessário que $L(M) =  L(S)$ para que $\langle M \rangle \in A$. 	Diante disto, será construído a seguir um decisor $M_A$ para $A$ :
+		
+		$M_A$ = ``Sobre a entrada $\langle M \rangle$, em que $M$ é uma expressão regular (ER), faça:
+		\begin{enumerate}
+			\item Construa o AFD $S$ conforme descrito anteriormente;
+			\item Converta a ER $M$ no AFD $N$ (Teorema 1.54 e Definição 1.16);
+			\item Construa a MT $T$ que decide $EQ_{AFD}$ (Teorema 4.5);
+			\item Rode $T$ sobre $\langle S, N \rangle$;
+			\begin{enumerate}
+				\item Se $T$ aceita, {\it aceite};
+				\item Caso contrário, {\it rejeite}.
+			\end{enumerate}					
+		\end{enumerate}
+		
+		A linguagem $A$ é decidível pois foi possível construir uma máquina de Turing que a decide (Definição 3.6) $\blacksquare$
+		
+	}
+
+\end{enumerate}
+
+\section*{Teoremas Auxiliares}
+
+\begin{itemize}
+	
+	\item[] {\bf Definição 1.16:} Uma linguagem é chamada de uma linguagem regular se algum autômato finito a reconhece.
+	\item[] {\bf Teorema 1.25:} A classe de linguagens regulares é fechada sob a operação de união.
+	\item[] {\bf Teorema 1.26:} A classe de linguagens regulares é fechada sob a operação de concatenação.
+	\item[] {\bf Teorema 1.39:} Todo autômato finito não-determinístico tem um autômato finito determinístico
+	equivalente.
+	\item[] {\bf Teorema 1.49:} A classe de linguagens regulares é fechada sob a operação estrela.
+	\item[] {\bf Teorema 1.54:} Uma linguagem é regular se e somente se alguma expressão regular a descreve.
+	\item[] {\bf Definição 3.5:} Chame uma linguagem de Turing-reconhecível se alguma máquina de Turing a reconhece.
+	\item[] {\bf Definição 3.6:} Chame uma linguagem de Turing-decidível ou simplesmente decidível se alguma máquina de Turing a decide.
+	\item[] {\bf Teorema 3.13:} Toda máquina de Turing multifita tem uma máquina de Turing que lhe é equivalente.
+	\item[] {\bf Teorema 3.16:} Toda máquina de Turing não-determinística tem uma máquina de Turing determinística que lhe é equivalente.
+	\item[] {\bf Teorema 3.21:} Uma linguagem é Turing-reconhecível se e somente se algum enumerador a enumera.
+	\item[] {\bf Teorema 4.1:} $A_{AFD}$ é uma linguagem decidível.
+	\item[] {\bf Teorema 4.2:} $A_{AFN}$ é uma linguagem decidível.
+	\item[] {\bf Teorema 4.3:} $A_{EXR}$ é uma linguagem decidível.
+	\item[] {\bf Teorema 4.4:} $V_{AFD}$ é uma linguagem decidível.
+	\item[] {\bf Teorema 4.5:} $EQ_{AFD}$ é uma linguagem decidível.
+	\item[] {\bf Teorema 4.9:} Toda linguagem livre-de-contexto é decidível.
+	\item[] {\bf Teorema 4.11:} $A_{MT}$ é uma linguagem indecidível.
+	\item[] {\bf Definição 4.14:} Um conjunto $A$ é contável se é finito ou tem o mesmo tamanho que $N$.
+\end{itemize}
+
+
+\end{document}
