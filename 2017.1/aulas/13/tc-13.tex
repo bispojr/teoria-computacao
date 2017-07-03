@@ -240,7 +240,7 @@
 		\begin{block}{$\mathbb{N}$ e $P$ têm o mesmo tamanho} \pause
 			\begin{itemize}
 				\item É possível encontrar uma correspondência entre $\mathbb{N}$ e $P$; \pause
-				\item $f:\mathbb{N} \rightarrow A$ em que $f(n) = 2n$;
+				\item $f:\mathbb{N} \rightarrow P$ em que $f(n) = 2n$;
 			\end{itemize}
 		\end{block}	
 	\end{frame}
@@ -294,97 +294,6 @@
 		\end{block}
 	\end{frame}
 
-	\begin{frame}{Conjuntos Incontáveis}
-		\begin{block}{Teorema 4.17}
-			$\mathbb{R}$ é incontável.
-		\end{block} \pause
-		\begin{block}{Ideia da Prova}
-			\begin{itemize}
-				\item De forma a mostrar que $\mathbb{R}$ é incontável, mostramos que nenhuma correspondência existe entre $\mathbb{N}$ e $\mathbb{R}$.
-				\begin{itemize}
-					\item Supomos, a princípio, que a correspondência $f$ existe.
-					\item Logo após, apresentamos um valor $x \in \mathbb{R}$ que não está emparelhado com valor algum em $\mathbb{N}$ \\(o que indica um absurdo).				
-				\end{itemize}
-			\end{itemize}
-		\end{block}
-	\end{frame}
-	
-	\begin{frame}{Conjuntos Incontáveis}
-		\begin{center}
-			\includegraphics[width=6cm]{images/fHip.png}
-			
-			{\bf Figura:} Suposta correspondência $f$ entre $\mathbb{N}$ e $\mathbb{R}$.
-		\end{center}
-	\end{frame}
-	
-	\begin{frame}{Conjuntos Incontáveis}
-		\begin{center}
-			\includegraphics[width=9cm]{images/fHipX.png}
-			
-			{\bf Figura:} Construção de $x$ a partir da correspondência $f$.
-		\end{center}
-	\end{frame}
-	
-	\begin{frame}{Conjuntos Incontáveis}
-		\begin{block}{Considerações}
-			Apenas deve-se ter o cuidado de escolher dígitos para $x$ \\diferentes de 0 e 9, devido ao fato de 
-			\begin{center}
-				$3,999 \ldots = 4,000 \ldots$
-			\end{center}
-		\end{block}
-	\end{frame}
-	
-	\begin{frame}{Conjuntos Incontáveis}
-		\begin{exampleblock}{Corolário do Teorema 4.17}
-			Algumas linguagens não são Turing-reconhecíveis.
-		\end{exampleblock} \pause
-		\begin{block}{Ideia da Prova}
-			\begin{enumerate}
-				\item Observar que o conjunto de todas as máquinas de Turing é contável;
-				\item Observar que o conjunto de todas as linguagens é incontável.
-				\item Como há mais linguagens do que máquinas de Turing, então algumas linguagens não podem ser Turing-reconhecíveis.
-			\end{enumerate}
-		\end{block}
-	\end{frame}
-	
-	\begin{frame}{Conjuntos Incontáveis}
-		\begin{block}{O conjunto de todas as máquinas de Turing é contável}
-			\begin{itemize}
-				\item $\Sigma^*$ é contável;
-				\item Cada máquina de Turing pode ser codificada em uma cadeia $\langle M \rangle$;
-				\item O conjunto $C$ de todas as máquinas de Turing pode ser representado por um conjunto de cadeias $\langle M \rangle$;
-				\item É possível enumerar $C$;
-				\item Logo $C$ é contável.
-			\end{itemize}
-		\end{block}
-	\end{frame}
-	
-	\begin{frame}{Conjuntos Incontáveis}
-		\begin{block}{O conjunto de todas as linguagens é incontável}
-			\begin{itemize}
-				\item O conjunto $B$ de todas as sequências binárias infinitas é incontável;
-				\item Qualquer linguagem pode ser descrita como uma sequência característica;
-				\item O conjunto $L$ de todas as linguagens podem ser representado por um conjunto de sequências característica;
-				\item A função $f : L \rightarrow B$ \\(em que $f(A)$ é igual à sequência característica de $A$) \\é uma correspondência;
-				\item Logo, como $B$ é incontável, $L$ é incontável.
-			\end{itemize}
-		\end{block}
-	\end{frame}
-	
-	\begin{frame}{Conjuntos Incontáveis}
-		\begin{center}
-			\includegraphics[width=11cm]{images/seqCar.png}
-			
-			{\bf Figura:} Construção de $\mathcal{X}A$ a partir da correspondência $\Sigma^*$.
-		\end{center}
-	\end{frame}
-	
-	\begin{frame}{Conjuntos Incontáveis}
-		\begin{block}{Exercício}
-			Mostrar que o problema da parada é indecidível.
-		\end{block}
-	\end{frame}
-	
 	\begin{frame}
 		\titlepage
 	\end{frame}
