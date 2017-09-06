@@ -1,0 +1,175 @@
+\documentclass[12pt,a4paper,oneside]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[portuguese]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{xcolor}
+% Definindo novas cores
+\definecolor{verde}{rgb}{0.25,0.5,0.35}
+
+\author{\\Universidade Federal de Goiás (UFG) - Regional  Jataí\\Bacharelado em Ciência da Computação \\Teoria da Computação \\Esdras Lins Bispo Jr.}
+
+\date{04 de setembro de 2017}
+
+\title{\sc \huge Prova (Parte 2)}
+
+\begin{document}
+
+\maketitle
+
+{\bf ORIENTAÇÕES PARA A RESOLUÇÃO}
+
+\small
+ 
+\begin{itemize}
+	\item A avaliação é individual, sem consulta;
+	\item A pontuação máxima desta avaliação é 10,0 (dez) pontos, sendo uma das 06 (seis) componentes que formarão a média final da disciplina: quatro testes, uma prova e exercícios;
+	\item A média final ($MF$) será calculada assim como se segue
+	\begin{eqnarray}
+		MF & = & MIN(10, S) \nonumber \\
+		S & = & (\sum_{i=1}^{4} 0,2.T_i ) + 0,2.P  + 0,1.EA + EB\nonumber
+	\end{eqnarray}
+	em que 
+	\begin{itemize}
+		\item $S$ é o somatório da pontuação de todas as avaliações,
+		\item $T_i$ é a pontuação obtida no teste $i$,
+		\item $P$ é a pontuação obtida na prova,
+		\item $EA$ é a pontuação total dos exercícios de aquecimentos, e
+		\item $EB$ é a pontuação total dos exercícios-bônus.
+	\end{itemize}
+	\item O conteúdo exigido desta avaliação compreende o seguinte ponto apresentado no Plano de Ensino da disciplina: (3) Problemas Decidíveis, (4) Problemas Indecidíveis e (5) Complexidade de Tempo.
+\end{itemize}
+
+\begin{center}
+	\fbox{\large Nome: \hspace{10cm}}
+\end{center}
+
+\newpage
+
+\begin{enumerate}
+	
+	\section*{Terceiro Teste}
+	
+	\item (5,0 pt)  Seja $A = \{\langle R \rangle$ | $R$ é uma expressão regular que descreve uma linguagem contendo pelo menos uma cadeia $\omega$ que tem 111 como uma subcadeia (i.e., $\omega = x111y$ para alguma $x$ e para alguma $y$ em $\Sigma^*$)$\}$. Mostre que $A$ é decidível.
+	
+	\vspace{0.3cm}
+	
+	{\color{blue} {\bf Resposta:} É possível criar um AFD $B$ de forma que $L(B)$ seja a expressão regular $\Sigma^*111\Sigma^*$ (Definição 1.16 e Teorema 1.54). Assim, para que $R$ gere pelo menos uma cadeia $\omega$ que tem 111 como uma subcadeia, é necessário garantir que $L(R) \cap L(B) \not= \emptyset$. Por fim, vamos criar um outro AFD $C$ de forma que $L(C) = L(R) \cap L(B)$ (pois a classe de linguagens regulares é fechada sob a operação de interseção) e verificamos se $\langle C \rangle$ é membro de $V_{AFD}$ (Teorema 4.4).
+		
+		Diante disto, será construído a seguir um decisor $M_A$ para $A$ :
+		
+		$M_A$ = ``Sobre a entrada $\langle R \rangle$, em que $R$ é uma expressão regular, faça:
+		\begin{enumerate}
+			\item Construa o AFD $B$ conforme descrito anteriormente;
+			\item Construa o AFD $C$ conforme descrito anteriormente;
+			\item Construa a MT $X$ que decide $V_{AFD}$ (Teorema 4.4);
+			\item Rode $X$ sobre $\langle C \rangle$;
+			\begin{enumerate}
+				\item Se $X$ aceita, {\it rejeite};
+				\item Caso contrário, {\it aceite}.
+			\end{enumerate}					
+		\end{enumerate}
+		
+		A linguagem $A$ é decidível pois foi possível construir uma máquina de Turing que a decide (Definição 3.6) $\blacksquare$
+		
+	}
+	
+	\item (5,0 pt) Seja $T = \{(i,j,k)$ | $i,j,k \in \mathbb{N}\}$. Mostre que $T$ é contável.
+	
+	\vspace{0.3cm}
+	
+	{\color{blue} {\bf Resposta:} Seja $\mathbb{M} = \{x \in \mathbb{N}$ | $x$ é múltiplo de 2, 3 ou 5$\}$. Ora, $\mathbb{M}$ é contável, pois 
+		\begin{itemize}
+			\item todos elementos de $\mathbb{M}$ são distintos entre si, e
+			\item como cada elemento de $\mathbb{M}$ é um número natural, é possível estabelecer uma ordem crescente a partir de seus valores.
+		\end{itemize} 
+		
+		
+	Ora $T$ tem o mesmo tamanho de $\mathbb{M}$, pois é possível estabelecer a bijeção $f:T \rightarrow \mathbb{M}$ em que $f(i,j,k) = 2^i3^j5^k$. Com $T$ tem o mesmo tamanho de $\mathbb{M}$, $T$ é contável $\blacksquare$
+	}
+	
+	\section*{Quarto Teste}
+	
+	\item (5,0 pt) Mostre que {\bf P} é fechada sob operação de complemento.\\
+	
+	{\color{blue}
+		{\bf Prova:} Seja $A$ uma linguagem decidível em {\bf P}. Seja $M_A$ a máquina de Turing simples (MT) que decide a linguagem $A$ (Definção 3.6) em tempo polinomial. Como $A$ é decidível em tempo polinomial, $A$ pertence a {\sc TIME}$(n^k)$ (em que $k$ é uma constante positiva).  Iremos construir a MT $M_{aux}$, a partir de $M_A$, que decide $\overline{A}$ em tempo polinomial. A descrição de $M_{aux}$ é dada a seguir:
+		
+		$M_{aux}$ = ``Sobre a entrada $\omega$, faça:
+		\begin{enumerate}
+			\item Rode $M_A$ sobre $\omega$. 
+			\item Se $M_A$ rejeita, {\it aceite}. Caso contrário, {\it rejeite}''.
+		\end{enumerate}
+		
+		O tempo de execução $t$ de $M_{aux}$ é igual a soma do tempo de execução dos passos (a) e (b). Logo, $t = O(n^k) + O(1) = O(n^k)$. Como $k$ é uma constante positiva, $\overline{A} \in$ {\sc TIME}$(n^k)$ e, consequentemente, $\overline{A} \in$ {\bf P}. Logo, podemos afirmar que {\bf P} é fechada sob a operação de complemento $\blacksquare$
+	}
+	
+	\item (5,0 pt) Seja CONEXO = $\{ \langle G \rangle$ | $G$ é um grafo simples conexo $\}$. \\Mostre que CONEXO está em {\bf NP}.
+	
+	\vspace*{0.5cm}
+	
+	{\color{blue}
+		{\bf Prova:} Se CONEXO $\in$ {\bf NP}, então é possível construir uma máquina de Turing (MT) que a decide em tempo polinomial não-determinístico. Construiremos a MT não-determinística $M$ que decide CONEXO:
+		
+		$M$ = ``Sobre a entrada $\langle G \rangle$, a codificação de um grafo $G$:
+		\begin{enumerate}
+			\item Selecione o primeiro nó de $G$ e marque-o.
+			\item Repita o seguinte estágio até que nenhum novo nó seja marcado:
+			\begin{enumerate}
+				\item Para cada nó em $G$, marque-o se ele está ligado por uma aresta a um nó que já está marcado.
+			\end{enumerate}
+			\item Faça uma varredura em todos os nós de $G$ para determinar se eles estão todos marcados. 
+			\item Se eles estão, {\it aceite}; caso contrário, {\it rejeite}''.
+		\end{enumerate}
+		
+		O tempo de execução $t$ de $M$ é igual a soma do tempo de execução dos passos (a), (b), (c) e (d). Logo, $t = O(1) + O(n)\times O(n^3) + O(n) + O(1)= O(n^4)$. 4 é um número natural e CONEXO $\in$ {\sc NTIME}$(n^4)$. Logo, podemos afirmar que CONEXO $\in$ {\bf NP} $\blacksquare$
+	}
+
+\end{enumerate}
+
+\section*{Teoremas Auxiliares}
+
+\begin{itemize}
+	\footnotesize
+	\item[] {\bf Definição 1.16:} Uma linguagem é chamada de uma linguagem regular se algum autômato finito a reconhece.
+	\item[] {\bf Teorema 1.25:} A classe de linguagens regulares é fechada sob a operação de união.
+	\item[] {\bf Teorema 1.26:} A classe de linguagens regulares é fechada sob a operação de concatenação.
+	\item[] {\bf Teorema 1.39:} Todo autômato finito não-determinístico tem um autômato finito determinístico
+	equivalente.
+	\item[] {\bf Teorema 1.49:} A classe de linguagens regulares é fechada sob a operação estrela.
+	\item[] {\bf Teorema 1.54:} Uma linguagem é regular se e somente se alguma expressão regular a descreve.
+	\item[] {\bf Definição 3.5:} Chame uma linguagem de Turing-reconhecível se alguma máquina de Turing a reconhece.
+	\item[] {\bf Definição 3.6:} Chame uma linguagem de Turing-decidível ou simplesmente decidível se alguma máquina de Turing a decide.
+	\item[] {\bf Teorema 3.13:} Toda máquina de Turing multifita tem uma máquina de Turing que lhe é equivalente.
+	\item[] {\bf Teorema 3.16:} Toda máquina de Turing não-determinística tem uma máquina de Turing determinística que lhe é equivalente.
+	\item[] {\bf Teorema 3.21:} Uma linguagem é Turing-reconhecível se e somente se algum enumerador a enumera.
+	\item[] {\bf Teorema 4.1:} $A_{AFD}$ é uma linguagem decidível.
+	\item[] {\bf Teorema 4.2:} $A_{AFN}$ é uma linguagem decidível.
+	\item[] {\bf Teorema 4.3:} $A_{EXR}$ é uma linguagem decidível.
+	\item[] {\bf Teorema 4.4:} $V_{AFD}$ é uma linguagem decidível.
+	\item[] {\bf Teorema 4.5:} $EQ_{AFD}$ é uma linguagem decidível.
+	\item[] {\bf Teorema 4.9:} Toda linguagem livre-de-contexto é decidível.
+	\item[] {\bf Teorema 4.11:} $A_{MT}$ é uma linguagem indecidível.
+	\item[] {\bf Definição 4.14:} Um conjunto $A$ é contável se é finito ou tem o mesmo tamanho que $N$.
+	\item[] {\bf Teorema 4.15:} $\mathbb{Q}$ é contável.
+	\item[] {\bf Teorema 4.17:} $\mathbb{R}$ é incontável.
+	\item[] {\bf Corolário 4.18:} Algumas linguagens não são Turing-reconhecíveis.
+	\item[] {\bf Teorema 4.22:} Uma linguagem é decidível sse ela é Turing-reconhecível e co-Turing-reconhecível.
+	\item[] {\bf Corolário 4.23:} $\overline{A_{MT}}$ não é Turing-reconhecível.
+	\item[] {\bf Teorema 7.8: }
+	Seja $t(n)$ uma função, em que $t(n) \geq n$. Então toda máquina de Turing multifita de tempo $t(n)$ tem uma máquina de Turing de um única fita equivalente de tempo $O(t^2(n))$.
+	\item[] {\bf Teorema 7.11: }
+	Seja $t(n)$ uma função, em que $t(n) \geq n$. Então toda máquina de Turing não-determinística de uma única fita de tempo $t(n)$ tem uma máquina de Turing de um única fita equivalente de tempo $2^{O(t(n))}$.	
+	\item[] {\bf Definição 7.12: }
+	{\bf P} é a classe de linguagens que são decidíveis em tempo polinomial sobre uma máquina de Turing determinística de uma única fita. Em outras palavras, {\bf P} = $\bigcup\limits_{k}$ {\bf TIME ($n^k$)}.
+	\item[] {\bf Definição 7.19: }
+	{\bf NP} é a classe das linguagens que têm verificadores de tempo polinomial.
+	\item[] {\bf Teorema 7.20: }
+	Uma linguagem está em {\bf NP} sse ela é decidida por alguma máquina de Turing não-determinística de tempo polinomial.  Em outras palavras, {\bf NP} = $\bigcup\limits_{k}$ {\bf NTIME ($n^k$)}.
+\end{itemize}
+
+\end{document}
