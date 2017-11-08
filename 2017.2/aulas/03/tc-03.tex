@@ -1,0 +1,265 @@
+\documentclass[xcolor=dvipsnames,table]{beamer}
+
+\usepackage{latexsym}
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{stmaryrd}
+\usepackage{fancybox}
+\usepackage{datetime}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{graphics}
+\usepackage{url}
+\usepackage{algorithmic}
+\usepackage{algorithm}
+\usepackage{acronym}
+\usepackage{array}
+
+\newtheorem{definicao}{Definio}
+\newcommand{\tab}{\hspace*{2em}}
+
+\mode<presentation>
+{
+  \definecolor{colortexto}{RGB}{0,0,0}
+ 
+  \setbeamertemplate{background canvas}[vertical shading][ bottom=white!10,top=white!10]
+  \setbeamercolor{normal text}{fg=colortexto} 
+
+  \usetheme{Warsaw}
+}
+
+\title{Definição de Computação \\em Máquina de Turing} 
+
+\author{
+  Esdras Lins Bispo Jr. \\ \url{bispojr@ufg.br}
+  } 
+ \institute{
+  Teoria da Computação \\Bacharelado em Ciência da Computação}
+\date{\textbf{26 de outubro de 2017} }
+
+\logo{\includegraphics[width=1cm]{images/ufgJataiLogo.png}}
+
+\begin{document}
+
+	\begin{frame}
+		\titlepage
+	\end{frame}
+
+	\AtBeginSection{
+		\begin{frame}{Sumário}%[allowframebreaks]{Sumário}
+    		\tableofcontents[currentsection]
+    		%\tableofcontents[currentsection, hideothersubsections]
+		\end{frame}
+	}
+
+	\begin{frame}{Plano de Aula}
+		\tableofcontents
+		%\tableofcontents[hideallsubsections]
+	\end{frame}
+	
+	
+%------------------------------------------
+	\section{Revisão}
+	\subsection{Máquina de Turing}	
+	\begin{frame}{Máquinas de Turing (MT)}
+		\begin{center}
+			\includegraphics[height=3.5cm]{images/fig31.png}
+		\end{center}
+	\end{frame}
+	
+	\begin{frame}{Máquinas de Turing (MT)}
+		\begin{block}{Diferenças entre MT e AFDs}
+			\begin{itemize}
+				\item Uma MT pode tanto escrever sobre a fita quanto ler a partir dela;  
+				\item A cabeça de leitura-escrita pode mover-se tanto para a esquerda quanto para a direita;  
+				\item A fita é infinita;  
+				\item Os estados especiais para rejeitar e aceitar fazem efeito imediatamente.
+			\end{itemize}
+		\end{block}
+	\end{frame}
+	
+	\begin{frame}{Máquinas de Turing (MT)}
+		\begin{block}{Construindo uma MT}
+			\begin{center}
+				Construir $M_1$ que reconheça a linguagem $B = \{ \omega \# \omega \mbox{ | } \omega \in \{ 0, 1 \}^* \}$.
+			\end{center}
+		\end{block}
+	\end{frame}
+	
+	\begin{frame}{Máquinas de Turing (MT)}
+		\begin{block}{Descrição de $M_1$}
+			$M_1 =$ ``Sobre a cadeia de entrada $\omega$:
+			\begin{enumerate}
+				\item Faça um zigue-zague ao longo da fita checando posições correspondentes de ambos os lados do símbolo $\#$ para verificar se elas contêm o mesmo símbolo. Se elas não contêm, ou se nenhum $\#$ for encontrado, {\it rejeite}. Marque os símbolos à medida que eles são verificados para manter registro de quais símbolos têm correspondência.
+				\item Quando todos os símbolos à esquerda do $\#$ tiverem sido marcados, verifique a existência de algum símbolo remanecente à direta do $\#$. Se resta algum símbolo, {\it rejeite}; caso contrário, {\it aceite}.
+			\end{enumerate}
+		\end{block}
+	\end{frame}
+	
+	\begin{frame}{Máquinas de Turing (MT)}
+		\begin{center}
+			\includegraphics[height=6cm]{images/fig32.png}
+		\end{center}
+	\end{frame}	
+	
+	\begin{frame}{Máquinas de Turing (MT)}
+		Uma {\bf máquina de Turing} é uma 7-upla $(Q, \Sigma, \Gamma, \delta, q_0, q_{aceita}, q_{rejeita})$, de forma que $Q, \Sigma, \Gamma$ são todos conjuntos finitos e
+		
+		\begin{enumerate}
+			\item $Q$ é o conjunto de estados,
+			\item $\Sigma$ é o alfabeto de entrada sem o {\bf símbolo branco} $\sqcup$,
+			\item $\Gamma$ é o alfabeto da fita, em que $\sqcup \in \Gamma$ e $\Sigma \subseteq \Gamma$,
+			\item $\delta : Q \times \Gamma \rightarrow Q \times \Gamma \times \{E, D\}$ é a função de transição,
+			\item $q_0 \in Q$ é o estado inicial,
+			\item $q_{aceita} \in Q$ é o estado de aceitação, e
+			\item $q_{rejeita} \in Q$ é o estado de rejeição, em que $q_{rejeita} \not= q_{aceita}$.
+		\end{enumerate}
+	\end{frame}
+	
+	\section{Configuração de MT}
+	\begin{frame}{Configuração de uma MT}
+		Uma configuração de uma MT leva em consideração:
+		\begin{itemize}
+			\item o estado atual da MT;
+			\item o conteúdo atual da fita;
+			\item a posição atual da cabeça.
+		\end{itemize}\pause
+		\begin{block}{Uma forma especial de representar...}
+			{\tt u}$q${\tt v} em que
+			\begin{itemize}
+				\item {\tt u} e {\tt v} são cadeias sobre $\Gamma$;
+				\item {\tt uv} é o conteúdo atual da fita;
+				\item $q$ é o estado atual; e
+				\item a posição atual da cabeça está sobre o primeiro símbolo de {\tt v}.
+			\end{itemize}
+		\end{block}
+	\end{frame}	
+	
+	\begin{frame}{Configuração de uma MT}
+		\begin{center}
+			\includegraphics[height=4cm]{images/fig34.png}
+		\end{center}
+	\end{frame}
+	
+	\begin{frame}{Configuração de uma MT}
+		A configuração $C_1$ {\bf origina} a configuração $C_2$, se a máquina de Turing puder legitimamente ir de $C_1$ para $C_2$.
+		\begin{block}{Mais formalmente...}					Para:
+			\begin{itemize}
+				\item {\tt a, b, c} $\in \Gamma$,
+				\item {\tt u, v} $\in \Gamma^*$, 
+				\item os estados $q_i$ e $q_j$, 
+				\item as configurações {\tt ua}$q_i${\tt bv} e {\tt u}$q_j${\tt acv}.
+			\end{itemize}
+			\pause	
+			Digamos que 
+			\begin{center}
+				{\tt ua}$q_i${\tt bv} origina {\tt u}$q_j${\tt acv} 
+			\end{center} 
+			se na função de transição $\delta(q_i, b) = (q_j, c, E)$.
+		\end{block}
+	\end{frame}
+	
+	\begin{frame}{Configuração de uma MT}
+		\begin{block}{Mais formalmente...}
+			Digamos que 
+			\begin{center}
+				{\tt ua}$q_i${\tt bv} origina {\tt u}$q_j${\tt acv} 
+			\end{center} 
+			se na função de transição $\delta(q_i, b) = (q_j, c, E)$. Ou
+			\begin{center}
+				{\tt ua}$q_i${\tt bv} origina {\tt uac}$q_j${\tt v} 
+			\end{center} 
+			se na função de transição $\delta(q_i, b) = (q_j, c, D)$.
+		\end{block}
+	\end{frame}
+	
+	\begin{frame}{Configuração de uma MT}
+		Termos importantes:
+		\begin{itemize}
+			\item configuração inicial;
+			\item configuração de aceitação;
+			\item configuração de rejeição;
+			\item configuração de parada.
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}{Linguagem de uma MT}
+		Uma máquina de Turing $M$ {\bf aceita} a entrada $\omega$ se uma sequência de configurações $C_1, C_2, \ldots, C_k$ existe, de forma que 
+		\begin{itemize}
+			\item $C_1$ é a configuração inicial de $M$ sobre a entrada $\omega$;
+			\item cada $C_i$ origina $C_{i+1}$;
+			\item $C_k$ é uma configuração de aceitação.
+		\end{itemize} \pause
+		
+		\begin{block}{Linguagem de $M$}
+			É a coleção de cadeias que $M$ aceita. Também chamada de {\bf linguagem reconhecida por $M$} e denotada por $L(M)$.
+		\end{block}		
+	\end{frame}
+	
+	\begin{frame}{Definições}
+		\begin{block}{Definição}
+			Chame uma linguagem de {\bf Turing-reconhecível}, se alguma máquina de Turing a reconhece.
+		\end{block} \pause
+		\begin{block}{Definição}
+			Chame uma linguagem de {\bf Turing-decidível}, se alguma máquina de Turing a decide.
+		\end{block}\pause
+		\begin{block}{Corolário}
+			Toda linguagem Turing-decidível é Turing-reconhecível.
+		\end{block}
+	\end{frame}		
+	
+	\begin{frame}{Exemplos}
+		Uma máquina de Turing $M_2$ que decide $A = \{ 0^{2^n} \mbox{ | } n \geq 0 \}$: \pause
+		\begin{center}
+			\includegraphics[height=3.5cm]{images/m2.png}
+		\end{center}
+	\end{frame}
+	
+	\begin{frame}{Exemplos}
+		\begin{block}{Descrição Formal de $M_2$}
+			$M_2 = (Q, \Sigma, \Gamma, \delta, q_1, q_{aceita}, q_{rejeita})$:
+			\begin{itemize}
+				\item $Q = \{ q_1, q_2, q_3, q_4, q_5, q_{aceita}, q_{rejeita} \}$;
+				\item $\Sigma = \{ 0 \}$,
+				\item $\Gamma = \{ 0, x, \sqcup \}$,
+				\item Descrevemos $\delta$ no próximo slide; e
+				\item $q_1, q_{aceita}$ e $q_{rejeita}$ são o estado inicial, de aceitação e de rejeição, respectivamente.
+			\end{itemize}
+		\end{block}
+	\end{frame}
+	
+	\begin{frame}{Exemplos}
+		\begin{center}
+			\includegraphics[height=7cm]{images/fig38.png}
+		\end{center}
+	\end{frame}
+	
+	\begin{frame}{Exemplos}
+		\begin{block}{$L(M_1)$}
+			Uma máquina de Turing $M_1$ que decide $B = \{ \omega \# \omega \mbox{ | } \omega \in \{ 0, 1 \}^* \}$		
+		\end{block} \pause
+		\begin{block}{Descrição Formal de $M_1$}
+			$M_3 = (Q, \Sigma, \Gamma, \delta, q_1 q_{aceita}, q_{rejeita})$:
+			\begin{itemize}
+				\item $Q = \{ q_1, \ldots, q_{14}, q_{aceita}, q_{rejeita} \}$;
+				\item $\Sigma = \{ 0, 1, \# \}$,
+				\item $\Gamma = \{ 0, 1, \#, x, \sqcup \}$,
+				\item Descrevemos $\delta$ no próximo slide; e
+				\item $q_1, q_{aceita}$ e $q_{rejeita}$ são o estado inicial, de aceitação e de rejeição, respectivamente.
+			\end{itemize}
+		\end{block}
+	\end{frame}
+	
+	\begin{frame}{Exemplos}
+		\begin{center}
+			\includegraphics[height=7cm]{images/fig310.png}
+		\end{center}
+	\end{frame}
+	
+	\begin{frame}
+		\titlepage
+	\end{frame}
+	
+\end{document}
