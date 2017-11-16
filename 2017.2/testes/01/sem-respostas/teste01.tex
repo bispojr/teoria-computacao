@@ -1,0 +1,68 @@
+\documentclass[12pt,a4paper,oneside]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[portuguese]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{xcolor}
+% Definindo novas cores
+\definecolor{verde}{rgb}{0.25,0.5,0.35}
+
+\author{\\Universidade Federal de Goiás (UFG) - Regional  Jataí\\Bacharelado em Ciência da Computação \\Teoria da Computação \\Esdras Lins Bispo Jr.}
+
+\date{16 de novembro de 2017}
+
+\title{\sc \huge Primeiro Teste}
+
+\begin{document}
+
+\maketitle
+
+{\bf ORIENTAÇÕES PARA A RESOLUÇÃO}
+
+\small
+ 
+\begin{itemize}
+	\item A avaliação é individual, sem consulta;
+	\item A pontuação máxima desta avaliação é 10,0 (dez) pontos, sendo uma das 06 (seis) componentes que formarão a média final da disciplina: quatro testes, uma prova e exercícios;
+	\item A média final ($MF$) será calculada assim como se segue
+	\begin{eqnarray}
+		MF & = & MIN(10, S) \nonumber \\
+		S & = & (\sum_{i=1}^{4} 0,2.T_i ) + 0,2.P  + EB\nonumber
+	\end{eqnarray}
+	em que 
+	\begin{itemize}
+		\item $S$ é o somatório da pontuação de todas as avaliações,
+		\item $T_i$ é a pontuação obtida no teste $i$,
+		\item $P$ é a pontuação obtida na prova, e
+		\item $EB$ é a pontuação total dos exercícios-bônus.
+	\end{itemize}
+	\item O conteúdo exigido desta avaliação compreende o seguinte ponto apresentado no Plano de Ensino da disciplina: (1) Teoria da Computação e (2) Modelos de Computação.
+\end{itemize}
+
+\begin{center}
+	\fbox{\large Nome: \hspace{10cm}}
+\end{center}
+
+\newpage
+
+\begin{enumerate}
+	
+	\section*{Primeiro Teste}
+	
+	\item (5,0 pt) {\bf [Sipser 3.9 (a)]} Seja um $k$-AP um autômato com pilha que tem $k$ pilhas. Portanto, um 0-AP é um AFN e um 1-AP é um AP convencional. Você já sabe que 1-APs são mais poderosos (reconhecem uma classe maior de linguagens) que 0-APs. Agora, mostre que 2-APs são mais poderosos que 1-APs.
+	
+	\item (5,0 pt) A operação binária ou-exclusivo, representada pelo símbolo $\otimes$, é definida da seguinte forma:
+	\begin{center}
+		$X \otimes Y = (\overline{X} \cap Y) \cup (X \cap \overline{Y})$
+	\end{center}
+	em que $X$ e $Y$ são dois conjuntos quaisquer.
+	
+	Mostre que a classe de linguagens decidíveis é fechada sob a operação de ou-exclusivo.
+
+\end{enumerate}
+
+\end{document}

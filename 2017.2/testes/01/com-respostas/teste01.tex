@@ -1,0 +1,118 @@
+\documentclass[12pt,a4paper,oneside]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[portuguese]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{xcolor}
+% Definindo novas cores
+\definecolor{verde}{rgb}{0.25,0.5,0.35}
+
+\author{\\Universidade Federal de Goiás (UFG) - Regional  Jataí\\Bacharelado em Ciência da Computação \\Teoria da Computação \\Esdras Lins Bispo Jr.}
+
+\date{16 de novembro de 2017}
+
+\title{\sc \huge Primeiro Teste}
+
+\begin{document}
+
+\maketitle
+
+{\bf ORIENTAÇÕES PARA A RESOLUÇÃO}
+
+\small
+ 
+\begin{itemize}
+	\item A avaliação é individual, sem consulta;
+	\item A pontuação máxima desta avaliação é 10,0 (dez) pontos, sendo uma das 06 (seis) componentes que formarão a média final da disciplina: quatro testes, uma prova e exercícios;
+	\item A média final ($MF$) será calculada assim como se segue
+	\begin{eqnarray}
+		MF & = & MIN(10, S) \nonumber \\
+		S & = & (\sum_{i=1}^{4} 0,2.T_i ) + 0,2.P  + EB\nonumber
+	\end{eqnarray}
+	em que 
+	\begin{itemize}
+		\item $S$ é o somatório da pontuação de todas as avaliações,
+		\item $T_i$ é a pontuação obtida no teste $i$,
+		\item $P$ é a pontuação obtida na prova, e
+		\item $EB$ é a pontuação total dos exercícios-bônus.
+	\end{itemize}
+	\item O conteúdo exigido desta avaliação compreende o seguinte ponto apresentado no Plano de Ensino da disciplina: (1) Teoria da Computação e (2) Modelos de Computação.
+\end{itemize}
+
+\begin{center}
+	\fbox{\large Nome: \hspace{10cm}}
+\end{center}
+
+\newpage
+
+\begin{enumerate}
+	
+	\section*{Primeiro Teste}
+	
+	\item (5,0 pt) {\bf [Sipser 3.9 (a)]} Seja um $k$-AP um autômato com pilha que tem $k$ pilhas. Portanto, um 0-AP é um AFN e um 1-AP é um AP convencional. Você já sabe que 1-APs são mais poderosos (reconhecem uma classe maior de linguagens) que 0-APs. Agora, mostre que 2-APs são mais poderosos que 1-APs.	
+	
+	\vspace{0.3cm}
+	
+	{\color{blue}	
+		
+		{\bf Prova:} Iremos realizar esta demonstração em dois passos:
+		\begin{enumerate}
+			\item 2-APs são pelo menos tão poderosos que 1-APs; e
+			\item É possível construir um 2-AP que reconhece $A = \{0^n1^n2^n$ | $n \geq 0\}$
+		\end{enumerate} 
+	
+		\underline{Prova do passo (a):}  Ora é possível simular qualquer 1-AP em um 2-AP. Para isto, basta reproduzir todo o mecanismo do 1-AP em um 2-AP desconsiderando uma das pilhas. Desta forma, 2-APs são pelo menos tão poderosos que 1-APs. $\blacksquare$
+		
+		\underline{Prova do passo (b):} O 2-AP $M$, descrito em alto nível abaixo, reconhece a linguagem $A$.
+		
+		$M$ = ``Sobre a entrada $\omega$, faça:
+		\begin{enumerate}
+			\item Se $\omega = \epsilon$, aceite.
+			\item Se o primeiro símbolo for 0, leia e empilhe todos os 0s consecutivos na pilha 1. Caso contrário, rejeite (enviando a execução da máquina para um estado de fuga).
+			\item Se o próximo símbolo for 1, leia e empilhe todos os 1s consecutivos na pilha 2. Caso contrário, rejeite.
+			\item Se o próximo símbolo for 2, leia cada símbolo 2, desempilhando simultaneamente um símbolo da pilha 1 e um símbolo da pilha 2. Caso contrário, rejeite.
+			\begin{enumerate}
+				\item Se, neste passo, não for possível desempilhar uma das pilhas a cada leitura do símbolo 2, rejeite;
+				\item Se, neste passo, encerrou a leitura de símbolos 2 e uma das pilhas tiver elementos, rejeite;
+			\end{enumerate}
+			\item Se ainda houver símbolos a serem lidos, rejeite;
+			\item Aceite.		
+		\end{enumerate} 
+	
+	Como a linguagem $A$ não é livre-de-contexto, nenhum 1-AP a reconhece. Como foi possível construir M (passo (b)), e sabendo do passo (a), podemos afirmar que 2-APs são mais poderosos que 1-APs. $\blacksquare$
+	}
+
+	\newpage
+	
+	\item (5,0 pt) A operação binária ou-exclusivo, representada pelo símbolo $\otimes$, é definida da seguinte forma:
+	\begin{center}
+		$X \otimes Y = (\overline{X} \cap Y) \cup (X \cap \overline{Y})$
+	\end{center}
+	em que $X$ e $Y$ são dois conjuntos quaisquer.
+	
+	Mostre que a classe de linguagens decidíveis é fechada sob a operação de ou-exclusivo.
+	
+	\vspace{0.3cm}
+	
+	{\color{blue}	
+		{\bf Prova:} Sejam $A$ e $B$ duas linguagens decidíveis. É possível construir duas máquinas de Turing (MTs) $M_A$ e $M_B$ que decidem as linguagens $A$ e $B$, respectivamente (pois se uma linguagem é decidível, então uma  MT a decide). Iremos construir a MT $M_{aux}$, a partir de $M_A$ e $M_B$, que decide $A \otimes B$. A descrição de $M_{aux}$ é dada a seguir:
+		
+		$M_{aux}$ = ``Sobre a entrada $\omega$, faça:
+		\begin{enumerate}
+			\item Rode $M_A$ sobre $\omega$; 
+			\item Rode $M_B$ sobre $\omega$; 
+			\item Se $M_A$ rejeita e $M_B$ aceita, {\it aceite};
+			\item Se $M_A$ aceita e $M_B$ rejeita, {\it aceite};
+			\item {\it Rejeite}.''.
+		\end{enumerate}
+		
+		Como foi possível construir $M_{aux}$, então $A \otimes B$ é decidível. Ora, se $A \otimes B$ é decidível, então a classe de linguagens decidíveis é fechada sob a operação de ou-exclusivo $\blacksquare$
+	}
+
+\end{enumerate}
+
+\end{document}
