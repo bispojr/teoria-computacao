@@ -1,0 +1,107 @@
+\documentclass[12pt,a4paper,oneside]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[portuguese]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{xcolor}
+% Definindo novas cores
+\definecolor{verde}{rgb}{0.25,0.5,0.35}
+
+\author{\\Universidade Federal de Goiás (UFG) - Regional  Jataí\\Bacharelado em Ciência da Computação \\Teoria da Computação \\Esdras Lins Bispo Jr.}
+
+\date{14 de dezembro de 2017}
+
+\title{\sc \huge Segundo Teste}
+
+\begin{document}
+
+\maketitle
+
+{\bf ORIENTAÇÕES PARA A RESOLUÇÃO}
+
+\small
+ 
+\begin{itemize}
+	\item A avaliação é individual, sem consulta;
+	\item A pontuação máxima desta avaliação é 10,0 (dez) pontos, sendo uma das 06 (seis) componentes que formarão a média final da disciplina: quatro testes, uma prova e exercícios;
+	\item A média final ($MF$) será calculada assim como se segue
+	\begin{eqnarray}
+		MF & = & MIN(10, S) \nonumber \\
+		S & = & (\sum_{i=1}^{4} 0,2.T_i ) + 0,2.P  + EB\nonumber
+	\end{eqnarray}
+	em que 
+	\begin{itemize}
+		\item $S$ é o somatório da pontuação de todas as avaliações,
+		\item $T_i$ é a pontuação obtida no teste $i$,
+		\item $P$ é a pontuação obtida na prova, e
+		\item $EB$ é a pontuação total dos exercícios-bônus.
+	\end{itemize}
+	\item O conteúdo exigido desta avaliação compreende o seguinte ponto apresentado no Plano de Ensino da disciplina: (2) Modelos de Computação, e (3) Problemas Decidíveis.
+\end{itemize}
+
+\begin{center}
+	\fbox{\large Nome: \hspace{10cm}}
+\end{center}
+
+\newpage
+
+\begin{enumerate}
+	
+	\section*{Segundo Teste}
+	
+	\item (5,0 pt)  {\bf [Sipser 3.6]} No Teorema 3.21, mostramos que uma linguagem é Turing-reconhecível sse algum enumerador a enumera. Por que não usamos o seguinte algoritmo mais simples
+	para a direção de ida da prova? Tal qual anteriormente, $s_1, s_2, \ldots$ é uma lista de todas as cadeias em $\Sigma^*$.
+	
+	$E$ = ``Ignore a entrada.
+	
+	\begin{enumerate}
+		\item Repita o que se segue para $i = 1,2,3,...$
+		\item Rode $M$ sobre $s_i$ .
+		\item Se ela aceita, imprima $s_i$ .
+	\end{enumerate}
+
+	\vspace{0.3cm}
+	
+	{\color{blue} {\bf Resposta:} Não se pode utilizar este algoritmo porque sabe-se apenas que $L(M)$ é Turing-reconhecível. Não se sabe se $L(M)$ é decidível. Logo existe a possibilidade de $M$ entrar em {\it loop} infinito de execução. Se isto ocorrer para uma dada entrada $s_j$, por exemplo, o passo (b) nunca encerrará a sua execução para esta cadeia. Assim, se houver alguma outra cadeia $s_k \in L(M)$ (em que $k > j$), então o enumerador $E$ nunca a imprimirá. Desta forma, este enumerador deixaria de imprimir uma ou mais cadeias de $L(M)$ (o que não contribuiria para a prova).
+	
+	}
+
+	\newpage
+	
+	\item (5,0 pt) A partir da classe de linguagens Turing-reconhecíveis, mostre 
+	\begin{enumerate}
+		\item o fecho sob alguma operação; e
+		
+		\vspace{0.3cm}
+		
+		{\color{blue} Suponha que você tenha escolhido a operação de união. A prova é apresentada a seguir.
+			
+			{\bf Prova:} Sejam duas linguagens Turing-reconhecíveis (TR) quaisquer $A$ e $B$. Sejam $M_A$ e $M_B$ as duas máquinas de Turing (MT) que reconhecem $A$ e $B$, respectivamente (Definição 3.5). Iremos construir uma MT não-determinística (MTN) $M_{aux}$, a partir de $M_A$ e $M_B$, que reconhece $A \cup B$. A descrição de $M_{aux}$ é dada a seguir: 
+			
+			$M_{aux}$ = ``Sobre a entrada $\omega$, faça:
+			\begin{enumerate}
+				\item Rode, não deterministicamente, $M_A$ e $M_B$ sobre a mesma cadeia $\omega$. 
+				\item Se uma das máquinas aceitar, {\it aceite}. 
+				\item Se ambas as máquinas rejeitarem, {\it rejeite}''.
+			\end{enumerate} 
+			
+			Como é possível construir $M_{aux}$, então $A \cup B$ é TR (Teorema 3.16).  Logo, a classe de linguagens Turing-reconhecíveis é fechada sob a operação de união $\blacksquare$
+		}
+	
+		\item a impossibilidade do fecho sob a operação de complemento.
+		
+		\vspace{0.3cm}
+		
+		{\color{blue} {\bf Resposta:} A impossibilidade do fecho sob a operação de complemento, para a classe de linguagens Turing-reconhecíveis, é devido à possibilidade de uma máquina de Turing (MT) qualquer entrar em {\it loop} infinito de execução. Se uma linguagem é Turing-reconhecível, então existe uma MT $M$, por exemplo, que a reconhece. Temos garantia que esta $M$ para, se $\omega \in L(M)$. Entretanto, não há garantias de que $M$ parará, se $\omega \not\in L(M)$. $M$ pode ou rejeitar a cadeia, ou entrar em {\it loop} infinito. Logo, é impossível criar uma MT $M$', a partir da máquina $M$, que reconhece o complemento de $L(M)$ $\blacksquare$
+		}
+	\end{enumerate}
+	
+	
+
+\end{enumerate}
+
+\end{document}
