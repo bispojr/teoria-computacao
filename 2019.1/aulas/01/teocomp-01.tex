@@ -1,0 +1,226 @@
+ \documentclass[xcolor=dvipsnames,table]{beamer}
+%o
+%e
+
+\usepackage{latexsym}
+\usepackage [ansinew]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage{amssymb} %Este e o AMS paquete
+\usepackage{amsmath}
+\usepackage{stmaryrd}
+\usepackage{fancybox}
+\usepackage{datetime}
+
+\usepackage[T1]{fontenc}
+
+%\usepackage{beamerthemesplit}
+\usepackage{graphicx}
+\usepackage{graphics}
+\usepackage{url}
+\usepackage{algorithmic}
+\usepackage{algorithm}
+\usepackage{acronym}
+\usepackage{array}
+
+\newtheorem{definicao}{Definio}
+\newcommand{\tab}{\hspace*{2em}}
+
+\mode<presentation>
+{
+  %\definecolor{colortexto}{RGB}{153,100,0}
+  \definecolor{colortexto}{RGB}{0,0,0}
+  
+% \setbeamersize{sidebar width left=0.5cm}
+  \setbeamertemplate{background canvas}[vertical shading][ bottom=white!10,top=white!10]
+%   \setbeamercolor{title}{fg=colortitulo!80!black,bg=blue!20!white}
+%   \setbeamercolor{title}{bg=colortitulo!20!black}
+%   \setbeamercolor{background canvas}{bg=colortitulo}
+%   \setbeamercolor{frametitle}{fg=red}
+
+  \setbeamercolor{normal text}{fg=colortexto} 
+
+  \usetheme{Warsaw}
+  %\logo{\includegraphics[width=2cm]{Images/ratonfuerte.jpg}}
+
+
+%   \usefonttheme[onlysmall]{structurebold}
+%   \usecolortheme{seahorse}
+%  \usecolortheme[named={YellowOrange}]{structure}
+%   \usecolortheme[named={Blue}]{structure}
+%   \usecolortheme{crane}
+%   \useoutertheme{default}
+}
+\setbeamertemplate{caption}[numbered]
+
+\title{Apresentação da Disciplina} 
+
+\author{
+  Esdras Lins Bispo Jr. \\ \url{esdraspiano@gmail.com}
+  } 
+ \institute{
+  Teoria Computação \\Bacharelado em Ciência da Computação}
+\date{\textbf{13 de março de 2019} }
+
+\logo{\includegraphics[width=1.5cm]{images/ufjJataiLogo.png}}
+
+\begin{document}
+
+	\begin{frame}
+		\titlepage
+	\end{frame}
+
+	\AtBeginSection{
+		\begin{frame}{Sumário}%[allowframebreaks]{Sumário}
+    		\tableofcontents[currentsection]
+    		%\tableofcontents[currentsection, hideothersubsections]
+		\end{frame}
+	}
+
+	\begin{frame}{Plano de Aula}
+		\tableofcontents
+		%\tableofcontents[hideallsubsections]
+	\end{frame}
+	
+	\section{Sobre a Disciplina}
+	\subsection{Professor}
+	\begin{frame}{Professor}
+		\begin{columns}
+			\column{.4\textwidth}  		
+			\begin{center}
+				\includegraphics[height=.5\textheight]{images/eu.jpg}
+			\end{center}
+			\column{.6 \textwidth}  		
+			\begin{block}{Quem?}
+				\begin{center}
+					{\bf Esdras Lins Bispo Junior} \\ Recife, Pernambuco.
+				\end{center}
+			\end{block}
+			\begin{block}{Formação}
+				\begin{center}
+					{\normalsize {\bf Bacharel} em Sistemas de Informação\\
+						{\bf Mestre} em Repr. Conhecimento (IA)}
+				\end{center}
+			\end{block}	
+			\begin{block}{Linha de Pesquisa}
+				Educação de Computação
+			\end{block}
+		\end{columns}
+	\end{frame}
+	
+	\subsection{Informações Importantes}
+	\begin{frame}{Informações Importantes}
+		\begin{block}{Professor}
+			\begin{itemize}
+				\item Esdras Lins Bispo Jr.
+				\item \url{esdraspiano@gmail.com}
+				\item Sala 18, 1º Andar (Bloco dos Professores, próx. CA2)
+			\end{itemize}
+		\end{block}
+	\end{frame}	
+	
+	\begin{frame}{Informações Importantes}
+		\begin{block}{Disciplina}
+			\begin{itemize}
+				\item Teoria da Computação
+				\item 17h20-19h00 (Terça, [CA2, Anfiteatro Inferior])\\
+				09h30-11h10 (Quarta, [CA2, Sala 13])
+				\item Dúvidas: 07h30 - 09h10 (Quarta)\\
+				{\color{red}[é necessário confirmação comigo]}
+				\item Grupo: \url{facebook.com/groups/teocomp.ufj.2019.1/}
+				\item Repositório: \url{github.com/bispojr/teoria-computacao}
+			\end{itemize}
+		\end{block}
+	\end{frame}	
+	
+	\begin{frame}{Informações Importantes}
+		\begin{block}{Metodologia}
+			\begin{itemize}
+				\item Aulas Expositivas Dialogadas;
+				\item Desafios e Autodesafios;
+				\item Orientações individuais;
+				\item Atividades em grupo;
+				\item Aplicação de atividades utilizando Ambiente Virtual de Aprendizagem (AVA);
+				\item Avaliação formativa;
+				\item Testes.
+			\end{itemize}
+		\end{block}
+	\end{frame}
+
+
+	\subsection{Instrumentos de Avaliação}
+	\begin{frame}{Instrumentos de Avaliação}
+	\begin{block}{Desafios e Autodesafios}
+		\begin{itemize}
+			\item Encontros de 10 minutos para retorno avaliativo;
+			\begin{itemize}
+				\item Quinzenais (presenciais).
+			\end{itemize}
+			\item Processo iterativo e interativo;
+			\item Possibilidade de refazimento de atividades, se necessário;
+			\item Desafios propostos pelo professor e pelo aluno;
+			\item Propósito de aperfeiçoar as habilidades necessárias para a sua resolução.
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+\begin{frame}{Instrumentos de Avaliação}
+\begin{block}{Critérios de Aprovação}
+	\begin{itemize}
+		\item Estar presente em 75\% dos nossos encontros;
+		\item Compromisso com a própria aprendizagem durante o semestre;
+		\item Respeito com o professor e com os demais colegas;
+		\item Apresentação de sua trajetória de formação para toda a turma.
+	\end{itemize}
+\end{block} \pause
+\begin{exampleblock}{Nota Final}
+	Média Final = 6,0 + Autoavaliação Dialogada [0,0 a 4,0]
+\end{exampleblock}
+\end{frame}
+
+\begin{frame}{Instrumentos de Avaliação}
+	\begin{block}{Critérios de Reprovação}
+		\begin{itemize}
+			\item Ausência em 25\% dos nossos encontros ou mais;
+			\item Descomprometimento com a própria aprendizagem durante o semestre.
+		\end{itemize}
+	\end{block} \pause
+	\begin{alertblock}{Nota Final}
+		Média Final = 5,0
+	\end{alertblock}
+\end{frame}
+
+\begin{frame}{Instrumentos de Avaliação}
+	\begin{center}
+		\includegraphics[width=\textwidth]{images/fluxo-correcao} \pause
+		\includegraphics[width=\textwidth]{images/fluxo-superacao}
+	\end{center}
+\end{frame}
+	
+	\begin{frame}{Informações Importantes}
+	\begin{block}{Conteúdo do Curso}
+		\begin{enumerate}
+			\item Introdução à Teoria da Computação;
+			\item Modelos de Computação;
+			\item Problemas decidíveis;
+			\item Problemas indecidíveis;
+			\item Complexidade de tempo;
+			\item NP-Completude;
+			\item Tópicos Avançados.
+		\end{enumerate}
+	\end{block}
+\end{frame}
+
+\begin{frame}{Livro de Referência}
+\begin{block}{Desafio n. 1}
+	Prove que a classe de linguagens livres-de-contexto são fechadas sobre a operação de união.
+\end{block}
+\begin{block}{Livro}
+	SIPSER, M. {\bf Introdução à Teoria da Computação}, 2a Edição, Editora Thomson Learning, 2011. \color{blue}{\bf Código Bib.: [004 SIP/int]}.
+\end{block}
+\end{frame}
+	
+	\begin{frame}
+		\titlepage
+	\end{frame}
+	
+\end{document}
