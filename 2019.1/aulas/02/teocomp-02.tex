@@ -1,0 +1,173 @@
+ \documentclass[xcolor=dvipsnames,table]{beamer}
+%o
+%e
+
+\usepackage{latexsym}
+\usepackage [ansinew]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage{amssymb} %Este e o AMS paquete
+\usepackage{amsmath}
+\usepackage{stmaryrd}
+\usepackage{fancybox}
+\usepackage{datetime}
+
+\usepackage[T1]{fontenc}
+
+%\usepackage{beamerthemesplit}
+\usepackage{graphicx}
+\usepackage{graphics}
+\usepackage{url}
+\usepackage{algorithmic}
+\usepackage{algorithm}
+\usepackage{acronym}
+\usepackage{array}
+
+\newtheorem{definicao}{Definio}
+\newcommand{\tab}{\hspace*{2em}}
+
+\mode<presentation>
+{
+  %\definecolor{colortexto}{RGB}{153,100,0}
+  \definecolor{colortexto}{RGB}{0,0,0}
+  
+% \setbeamersize{sidebar width left=0.5cm}
+  \setbeamertemplate{background canvas}[vertical shading][ bottom=white!10,top=white!10]
+%   \setbeamercolor{title}{fg=colortitulo!80!black,bg=blue!20!white}
+%   \setbeamercolor{title}{bg=colortitulo!20!black}
+%   \setbeamercolor{background canvas}{bg=colortitulo}
+%   \setbeamercolor{frametitle}{fg=red}
+
+  \setbeamercolor{normal text}{fg=colortexto} 
+
+  \usetheme{Warsaw}
+  %\logo{\includegraphics[width=2cm]{Images/ratonfuerte.jpg}}
+
+
+%   \usefonttheme[onlysmall]{structurebold}
+%   \usecolortheme{seahorse}
+%  \usecolortheme[named={YellowOrange}]{structure}
+%   \usecolortheme[named={Blue}]{structure}
+%   \usecolortheme{crane}
+%   \useoutertheme{default}
+}
+\setbeamertemplate{caption}[numbered]
+
+\title{Introdução à Teoria da Computação} 
+
+\author{
+  Esdras Lins Bispo Jr. \\ \url{esdraspiano@gmail.com}
+  } 
+ \institute{
+  Teoria Computação \\Bacharelado em Ciência da Computação}
+\date{\textbf{19 de março de 2019} }
+
+\logo{\includegraphics[width=1.5cm]{images/ufjJataiLogo.png}}
+
+\begin{document}
+
+	\begin{frame}
+		\titlepage
+	\end{frame}
+
+	\AtBeginSection{
+		\begin{frame}{Sumário}%[allowframebreaks]{Sumário}
+    		\tableofcontents[currentsection]
+    		%\tableofcontents[currentsection, hideothersubsections]
+		\end{frame}
+	}
+
+	\begin{frame}{Plano de Aula}
+		\tableofcontents
+		%\tableofcontents[hideallsubsections]
+	\end{frame}
+	
+	\section{Pensamento}
+	\begin{frame}{Pensamento}
+		\begin{center}
+			\includegraphics[width=7cm]{images/pensamento.png}
+		\end{center}
+	\end{frame}
+	
+	\begin{frame}{Pensamento}
+		\begin{columns}
+		\column{.4\textwidth}  		
+			\begin{center}
+				\includegraphics[height=.5\textheight]{images/wittgenstein.jpg}
+			\end{center}
+		\column{.6\textwidth}  		
+			\begin{block}{Frase}
+				\begin{center}
+					{\large Os limites do meu conhecimento são os limites do meu mundo.}
+				\end{center}
+			\end{block}		  		
+			\begin{block}{Quem?}
+				\begin{center}
+					{\bf Ludwig Wittgenstein (1889-1951)} \\ Filósofo austríaco.
+				\end{center}
+			\end{block}
+		\end{columns}
+	\end{frame}
+	%------------------------------------------
+	\section{Introdução}
+	\subsection{O que é Teoria da Computação?}
+	\begin{frame}{O que é Teoria da Computação?}
+		Pode ser dividida em três grandes áreas:
+		\begin{itemize}
+			\item Teoria dos Autômatos;
+			\item Teoria da Computabilidade;
+			\item Teoria da Complexidade.	
+		\end{itemize}\pause
+		São interligadas pela pergunta:
+		\begin{block}{}
+			Quais são as capacidades e limitações fundamentais dos computadores?
+		\end{block}
+	\end{frame}
+	
+	\begin{frame}{O que é Teoria da Computação?}
+		\begin{block}{Teoria dos Autômatos}
+			Quais são as definições e propriedades dos modelos matemáticos de computação?
+		\end{block} \pause
+		\begin{block}{Teoria da Computabilidade}
+			O que faz alguns problemas serem solúveis e outros não?		
+		\end{block} \pause
+		\begin{block}{Teoria da Complexidade}
+			O que faz alguns problemas serem computacionalmente difíceis e outros fáceis?
+		\end{block}
+	\end{frame}
+	
+	\section{Máquina de Turing}
+	\begin{frame}{Modelos Básicos Computacionais}
+		\begin{block}{AFDs, AFNs, e Expressões Regulares}
+			\begin{itemize}
+				\item Potencialidades: reconhecem linguagens como $({\tt 10} \cup {\tt 1})^*$;
+				\item Fragilidades: não reconhecem linguagens como $A = \{ {\tt 0}^n {\tt 1}^n \mbox{ | } n \geq 0 \mbox{ e } n \in \mathbb{N} \}$.
+			\end{itemize}
+		\end{block} \pause
+		\begin{block}{GLCs e Autômatos com Pilha}
+			\begin{itemize}
+				\item Potencialidades: reconhecem linguagens como $A = \{ {\tt 0}^n {\tt 1}^n \mbox{ | } n \geq 0 \mbox{ e } n \in \mathbb{N} \}$;
+				\item Fragilidades: não reconhecem linguagens como $A = \{ {\tt a}^n {\tt b}^n {\tt c}^n\mbox{ | } n \geq 0 \mbox{ e } n \in \mathbb{N} \}$.
+			\end{itemize}
+		\end{block} \pause
+		\begin{alertblock}{}
+			Portanto são bem restritos para servir de modelo de computadores de propósito geral.
+		\end{alertblock}
+	\end{frame}
+	
+	\begin{frame}{Máquinas de Turing (MT)}
+		\begin{itemize}
+			\item Modelo mais poderoso que GLCs e AFDs; \pause
+			\item Turing, 1936; \pause
+			\item Características importantes:
+			\begin{enumerate}
+				\item faz tudo o que um computador real pode fazer;
+				\item existem certos problemas que uma MT não pode resolver.
+			\end{enumerate}				 
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}
+		\titlepage
+	\end{frame}
+	
+\end{document}
