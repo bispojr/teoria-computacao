@@ -1,0 +1,159 @@
+ \documentclass[xcolor=dvipsnames,table]{beamer}
+%o
+%e
+
+\usepackage{latexsym}
+\usepackage [ansinew]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage{amssymb} %Este e o AMS paquete
+\usepackage{amsmath}
+\usepackage{stmaryrd}
+\usepackage{fancybox}
+\usepackage{datetime}
+
+\usepackage[T1]{fontenc}
+
+%\usepackage{beamerthemesplit}
+\usepackage{graphicx}
+\usepackage{graphics}
+\usepackage{url}
+\usepackage{algorithmic}
+\usepackage{algorithm}
+\usepackage{acronym}
+\usepackage{array}
+
+\newtheorem{definicao}{Definio}
+\newcommand{\tab}{\hspace*{2em}}
+
+\mode<presentation>
+{
+  %\definecolor{colortexto}{RGB}{153,100,0}
+  \definecolor{colortexto}{RGB}{0,0,0}
+  
+% \setbeamersize{sidebar width left=0.5cm}
+  \setbeamertemplate{background canvas}[vertical shading][ bottom=white!10,top=white!10]
+%   \setbeamercolor{title}{fg=colortitulo!80!black,bg=blue!20!white}
+%   \setbeamercolor{title}{bg=colortitulo!20!black}
+%   \setbeamercolor{background canvas}{bg=colortitulo}
+%   \setbeamercolor{frametitle}{fg=red}
+
+  \setbeamercolor{normal text}{fg=colortexto} 
+
+  \usetheme{Warsaw}
+  %\logo{\includegraphics[width=2cm]{Images/ratonfuerte.jpg}}
+
+
+%   \usefonttheme[onlysmall]{structurebold}
+%   \usecolortheme{seahorse}
+%  \usecolortheme[named={YellowOrange}]{structure}
+%   \usecolortheme[named={Blue}]{structure}
+%   \usecolortheme{crane}
+%   \useoutertheme{default}
+}
+\setbeamertemplate{caption}[numbered]
+
+\title{Variantes de Máquina de Turing} 
+
+\author{
+  Esdras Lins Bispo Jr. \\ \url{esdraspiano@gmail.com}
+  } 
+ \institute{
+  Teoria Computação \\Bacharelado em Ciência da Computação}
+\date{\textbf{09 de abril de 2019} }
+
+\logo{\includegraphics[width=1.5cm]{images/ufjJataiLogo.png}}
+
+\begin{document}
+
+	\begin{frame}
+		\titlepage
+	\end{frame}
+
+	\AtBeginSection{
+		\begin{frame}{Sumário}%[allowframebreaks]{Sumário}
+    		\tableofcontents[currentsection]
+    		%\tableofcontents[currentsection, hideothersubsections]
+		\end{frame}
+	}
+
+	\begin{frame}{Plano de Aula}
+		\tableofcontents
+		%\tableofcontents[hideallsubsections]
+	\end{frame}
+	
+	\section{Revisão}
+
+\begin{frame}{Problema}
+\begin{block}{Problema 3.15 (a)}
+	Mostre que a coleção de linguagens decidíveis é fechada sob a operação de união.		
+\end{block} \pause
+\begin{center}
+	\includegraphics[height=2.7cm]{images/ex3-15a}
+\end{center}
+\end{frame}
+
+\subsection{MT Multifita}
+\begin{frame}[shrink]{MT Multifita}
+\begin{block}{Definição}
+Uma {\bf máquina de Turing multifita} é como uma máquina de Turing comum com várias fitas:
+\begin{itemize} \pause
+	\item cada fita tem sua própria cabeça de leitura e escrita; \pause
+	\item a configuração inicial consiste da cadeia de entrada aparecer sobre a fita 1, e as outras iniciar em branco; \pause
+	\item a função de transição permite ler, escrever e mover as cabeças em algumas ou em todas as fitas simultaneamente
+	\begin{center}
+		$\delta : Q \times \Gamma^k \rightarrow Q \times \Gamma^k \times \{E,D,P\}^k$
+	\end{center}
+	em que $k$ é o número de fitas.
+\end{itemize}
+\end{block}\pause
+\begin{block}{Exemplo}
+$\delta(q_i, a_1, \ldots, a_k) = (q_j, b_1, \ldots, b_k, P, D, \ldots, E)$
+\end{block}
+\end{frame}
+
+\begin{frame}{MT Multifita}
+\begin{block}{Teorema}
+Toda máquina de Turing multifita tem uma máquina de Turing de uma única fita que lhe é equivalente.
+\end{block}
+\end{frame}
+
+\section{Variantes da MT}
+
+\begin{frame}{MT Multifita}
+\begin{center}
+\includegraphics[height=6cm]{images/fig314.png}
+\end{center}
+\end{frame}
+
+\begin{frame}{MT Multifita}
+\begin{center}
+\includegraphics[height=5cm]{images/teoMt-1.png}
+\end{center}
+\end{frame}
+
+\begin{frame}{MT Multifita}
+\begin{center}
+\includegraphics[height=3.3cm]{images/teoMt-2.png}
+\end{center}
+\end{frame}
+
+\begin{frame}{MT Multifita}
+\begin{block}{Teorema}
+Toda máquina de Turing multifita tem uma máquina de Turing de uma única fita que lhe é equivalente.
+\end{block} \pause
+\begin{block}{Corolário}
+Uma linguagem é Turing-reconhecível se e somente se alguma máquina de Turing multifita a reconhece.
+\end{block}
+\end{frame}
+
+\begin{frame}{MT Multifita}
+\begin{center}
+\includegraphics[height=1.8cm]{images/provaCorolario.png}
+\end{center}
+\end{frame}
+	
+	\begin{frame}
+		\titlepage
+	\end{frame}
+	
+\end{document}
