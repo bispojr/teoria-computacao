@@ -1,0 +1,225 @@
+ \documentclass[xcolor=dvipsnames,table]{beamer}
+%o
+%e
+
+\usepackage{latexsym}
+\usepackage [ansinew]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage{amssymb} %Este e o AMS paquete
+\usepackage{amsmath}
+\usepackage{stmaryrd}
+\usepackage{fancybox}
+\usepackage{datetime}
+
+%\usepackage[T1]{fontenc}
+
+%\usepackage{beamerthemesplit}
+\usepackage{graphicx}
+\usepackage{graphics}
+\usepackage{url}
+\usepackage{algorithmic}
+\usepackage{algorithm}
+\usepackage{acronym}
+\usepackage{array}
+
+\newtheorem{definicao}{Definio}
+\newcommand{\tab}{\hspace*{2em}}
+
+\mode<presentation>
+{
+  %\definecolor{colortexto}{RGB}{153,100,0}
+  \definecolor{colortexto}{RGB}{0,0,0}
+  
+% \setbeamersize{sidebar width left=0.5cm}
+  \setbeamertemplate{background canvas}[vertical shading][ bottom=white!10,top=white!10]
+%   \setbeamercolor{title}{fg=colortitulo!80!black,bg=blue!20!white}
+%   \setbeamercolor{title}{bg=colortitulo!20!black}
+%   \setbeamercolor{background canvas}{bg=colortitulo}
+%   \setbeamercolor{frametitle}{fg=red}
+
+  \setbeamercolor{normal text}{fg=colortexto} 
+
+  \usetheme{Warsaw}
+  %\logo{\includegraphics[width=2cm]{Images/ratonfuerte.jpg}}
+
+
+%   \usefonttheme[onlysmall]{structurebold}
+%   \usecolortheme{seahorse}
+%  \usecolortheme[named={YellowOrange}]{structure}
+%   \usecolortheme[named={Blue}]{structure}
+%   \usecolortheme{crane}
+%   \useoutertheme{default}
+}
+\setbeamertemplate{caption}[numbered]
+
+\title{Apresentação da Disciplina} 
+
+\author{
+  Esdras Lins Bispo Jr. \\ \url{bispojr@ufg.br}
+  } 
+ \institute{
+  Teoria Computação \\Bacharelado em Ciência da Computação}
+\date{\textbf{02 de março de 2020} }
+
+\logo{\includegraphics[width=1.5cm]{images/ufjJataiLogo.png}}
+
+\begin{document}
+
+	\begin{frame}
+		\titlepage
+	\end{frame}
+
+	\AtBeginSection{
+		\begin{frame}{Sumário}%[allowframebreaks]{Sumário}
+    		\tableofcontents[currentsection]
+    		%\tableofcontents[currentsection, hideothersubsections]
+		\end{frame}
+	}
+
+	\begin{frame}{Plano de Aula}
+		\tableofcontents
+		%\tableofcontents[hideallsubsections]
+	\end{frame}
+	
+	\section{Sobre a Disciplina}
+	\subsection{Professor}
+	\begin{frame}{Professor}
+		\begin{columns}
+			\column{.4\textwidth}  		
+			\begin{center}
+				\includegraphics[height=.5\textheight]{images/eu.jpg}
+			\end{center}
+			\column{.6 \textwidth}  		
+			\begin{block}{Quem?}
+				\begin{center}
+					{\bf Esdras Lins Bispo Junior} \\ Recife, Pernambuco.
+				\end{center}
+			\end{block}
+			\begin{block}{Formação}
+				\begin{center}
+					{\normalsize {\bf Bacharel} em Sistemas de Informação\\
+						{\bf Mestre} em Repr. Conhecimento (IA)}
+				\end{center}
+			\end{block}	
+			\begin{block}{Linha de Pesquisa}
+				Educação em Computação
+			\end{block}
+		\end{columns}
+	\end{frame}
+	
+	\subsection{Informações Importantes}
+	\begin{frame}{Informações Importantes}
+		\begin{block}{Professor}
+			\begin{itemize}
+				\item Esdras Lins Bispo Jr.
+				\item \url{bispojr@ufg.br}
+				\item Sala 18, 1º Andar (Bloco dos Professores, próx. CA2)
+			\end{itemize}
+		\end{block}
+	\end{frame}	
+	
+	\begin{frame}{Informações Importantes}
+		\begin{block}{Disciplina}
+			\begin{itemize}
+				\item Teoria da Computação
+				\item 13h30-17h10 (Segunda, [CA1, Sala 09])\\
+				13h30-17h10 (Terça, [CA1, Sala 06])
+				\item Dúvidas: 07h30 - 09h10 (Quarta)\\
+				{\color{red}[é necessário confirmação comigo]}
+				\item Google Classroom: Código - \url{gcoglys}
+				\item Repositório: \url{github.com/bispojr/teoria-computacao}
+			\end{itemize}
+		\end{block}
+	\end{frame}	
+	
+	\begin{frame}{Informações Importantes}
+		\begin{block}{Metodologia}
+			\begin{itemize}
+				\item Aulas Expositivas Dialogadas;
+				\item Sessões Tutoriais;
+				\item Aprendizagem baseada em Problemas;
+				\item Avaliação formativa;
+				\item Listas de Exercícios;
+				\item Provas.
+			\end{itemize}
+		\end{block}
+	\end{frame}
+	
+	
+	\begin{frame}{Aprendizagem baseada em Problemas}
+		\begin{center}
+			\includegraphics[width=0.8\textwidth]{images/pbl-ciclo}
+		\end{center}
+	\end{frame}
+
+\begin{frame}{Aprendizagem baseada em Problemas}
+	\begin{center}
+		\includegraphics[width=\textwidth]{images/sete-passos}
+	\end{center}
+\end{frame}
+	
+	\begin{frame}{Aprendizagem baseada em Problemas}
+		\begin{center}
+			\includegraphics[width=\textwidth]{images/funcoes-pbl}
+		\end{center}
+	\end{frame}
+
+	\subsection{Instrumentos de Avaliação}
+
+\begin{frame}{Instrumentos de Avaliação}
+\begin{block}{Critérios de Aprovação}
+	\begin{itemize}
+		\item Estar presente em 75\% dos nossos encontros;
+		\item Compromisso com a própria aprendizagem durante o semestre;
+		\item Respeito com o professor e com os demais colegas;
+		\item Peso de referência:
+		\begin{itemize}
+			\item Provas escritas (PE): 40\%;
+			\item Resolução dos Problemas (RP): 40\%;
+			\item Relacionamento Interpessoal (RI): 20\%.
+		\end{itemize}
+	\end{itemize}
+\end{block} \pause
+\begin{exampleblock}{Nota Final}
+	0,4$\times$(PE + RP) + 0,2$\times$RI + Autoavaliação dialogada.
+\end{exampleblock}
+\end{frame}
+
+\begin{frame}{Instrumentos de Avaliação}
+	\begin{block}{Critérios de Reprovação}
+		\begin{itemize}
+			\item Ausência em 25\% dos nossos encontros ou mais;
+			\item Descomprometimento com a própria aprendizagem durante o semestre; ou
+			\item Nota final abaixo de 6,0.
+		\end{itemize}
+	\end{block} 
+\end{frame}
+
+\begin{frame}{Instrumentos de Avaliação}
+	\begin{center}
+		\includegraphics[width=\textwidth]{images/fluxo-correcao} \pause
+		\includegraphics[width=\textwidth]{images/fluxo-superacao}
+	\end{center}
+\end{frame}
+	
+	\begin{frame}{Informações Importantes}
+	\begin{block}{Conteúdo do Curso}
+		\begin{enumerate}
+			\item Máquina de Turing;
+			\item Decidibilidade;
+			\item Complexidade.
+		\end{enumerate}
+	\end{block}
+\end{frame}
+
+\begin{frame}{Livro de Referência}
+\begin{block}{Livro}
+	SIPSER, M. {\bf Introdução à Teoria da Computação}, 2a Edição, Editora Thomson Learning, 2011. \color{blue}{\bf Código Bib.: [004 SIP/int]}.
+\end{block}
+\end{frame}
+	
+	\begin{frame}
+		\titlepage
+	\end{frame}
+	
+\end{document}
